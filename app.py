@@ -159,7 +159,7 @@ class PaginaActividad(tk.Frame):
         tk.Frame.__init__(self, master)
         tk.Frame.configure(self)
         tituloFrameActividad= tk.Label(self, text= "Actividad")
-        tituloFrameActividad.grid(row=1, column=2)
+        tituloFrameActividad.grid()
 
         self.imagenJuega= tk.PhotoImage(file= "Imagenes\Actividad\cactividadJuega.png")
         self.imagenConfundido= tk.PhotoImage(file= "Imagenes\Actividad\cactividadConfundido.png")
