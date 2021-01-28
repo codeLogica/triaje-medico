@@ -2,6 +2,7 @@ import tkinter as tk
 import tkinter as ttk
 from tkinter import PhotoImage
 from Mod_Evaluar import Conciencia
+from Mod_Evaluar import ColoracionPiel
 
 #Esta seccion sirve para camibiar entre frames durante la ejecucion del programa. 
 class SampleApp(tk.Tk):
@@ -34,7 +35,10 @@ class PaginaGeneral(tk.Frame):
 
         botonSiguienteGeneral= tk.Button(self, text= "INICIO", command=lambda: master.switch_frame(PaginaConciencia))
         botonSiguienteGeneral.grid()
-
+        
+#Este es el primer frame con el primer parametro a evaluar, el de conciencia. Lo mas relevante es la funcionalidad del imagebutton: se crea una funcion lambda que manda a llamar dos funciones, ambas estan dentro de una tupla;
+# 1.- La primera para asignar el valor segun el parametro a evlauar par dar un puntaje final  y asi dar un resultado
+# 2.- La segunda aun dentro de la tupla, contenida en una lista, para dar paso al siguiente frame. 
 class PaginaConciencia(tk.Frame):
     def __init__(self, master):
         tk.Frame.__init__(self, master)
@@ -74,13 +78,15 @@ class PaginaColorPiel(tk.Frame):
         self.imagenPielRubicunda= tk.PhotoImage(file= "Imagenes/Piel/pielRubicunda.png")
         self.imagenPielMarmorea= tk.PhotoImage(file= "Imagenes/Piel/pielMarmorea.png")
         self.imagenPielPurpurica= tk.PhotoImage(file= "Imagenes/Piel/pielPurpurica.png")
+        
+        coloracionPiel = ColoracionPiel.Opciones()
 
-        botonRosada= tk.Button(self, image= self.imagenPielRosada, command= lambda:[master.switch_frame(PaginaHidraPiel)]).grid()
-        botonPalida= tk.Button(self, image= self.imagenPielPalida,command= lambda:[master.switch_frame(PaginaHidraPiel)]).grid()
-        botonCianotica= tk.Button(self, image= self.imagenPielCianotica,command= lambda:[master.switch_frame(PaginaHidraPiel)]).grid()
-        botonRubicunda= tk.Button(self, image= self.imagenPielRubicunda,command= lambda:[master.switch_frame(PaginaHidraPiel)]).grid()
-        botonMarmorea= tk.Button(self, image= self.imagenPielMarmorea,command= lambda:[master.switch_frame(PaginaHidraPiel)]).grid()
-        botonPurpurica= tk.Button(self, image= self.imagenPielPurpurica,command= lambda:[master.switch_frame(PaginaHidraPiel)]).grid()
+        botonRosada= tk.Button(self, image= self.imagenPielRosada, command= lambda:(coloracionPiel.Rosada(), [master.switch_frame(PaginaHidraPiel)])).grid()
+        botonPalida= tk.Button(self, image= self.imagenPielPalida,command= lambda:(coloracionPiel.Palida(), [master.switch_frame(PaginaHidraPiel)])).grid()
+        botonCianotica= tk.Button(self, image= self.imagenPielCianotica,command= lambda:(coloracionPiel.Cianotica(), [master.switch_frame(PaginaHidraPiel)])).grid()
+        botonRubicunda= tk.Button(self, image= self.imagenPielRubicunda,command= lambda:(coloracionPiel.Rubicunda(), [master.switch_frame(PaginaHidraPiel)])).grid()
+        botonMarmorea= tk.Button(self, image= self.imagenPielMarmorea,command= lambda:(coloracionPiel.Marmorea(), [master.switch_frame(PaginaHidraPiel)])).grid()
+        botonPurpurica= tk.Button(self, image= self.imagenPielPurpurica,command= lambda:(coloracionPiel.Purpurica(), [master.switch_frame(PaginaHidraPiel)])).grid()
 
 class PaginaHidraPiel(tk.Frame):
     def __init__(self, master):
