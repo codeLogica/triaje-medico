@@ -3,6 +3,7 @@ import tkinter as ttk
 from tkinter import PhotoImage
 from Mod_Evaluar import Conciencia
 
+#Esta seccion sirve para camibiar entre frames durante la ejecucion del programa. 
 class SampleApp(tk.Tk):
     def __init__(self):
         tk.Tk.__init__(self)
@@ -15,7 +16,10 @@ class SampleApp(tk.Tk):
             self._frame.destroy()
         self._frame = new_frame
         self._frame.pack()
-
+        
+#Esta es la pagina principal del programa, donde se muestra infomracion relevante. Se inicializa el frame y dentro encontramos los widgets necesarios. Se basa en una serie de imagenes con los parametros a analizar y dependiendo de la seleccion se evaluan en otro modulo. 
+#Se sigue el siguiente esquema en todos los frames:
+#Inizialicacion --> informacion --> imagenes --> llamada al modulo con el parametro a evaluar --> botones 
 class PaginaGeneral(tk.Frame):
     def __init__(self, master):
         tk.Frame.__init__(self, master)
@@ -51,11 +55,11 @@ class PaginaConciencia(tk.Frame):
         
         conciencia = Conciencia.Opciones()
 
-        botonDespierto= tk.Button(self, image= self.imagenDespierto, command= lambda: conciencia.Despierto()).grid()
-        botonSomnoliento= tk.Button(self, image= self.imagenSomnoliento, command= lambda: conciencia.Somnoliento()).grid()
-        botonIrritable= tk.Button(self, image= self.imagenIrritable, command= lambda:[master.switch_frame(PaginaColorPiel)]).grid()
-        botonNoDuerme= tk.Button(self, image= self.imagenNoDuerme, command= lambda:[master.switch_frame(PaginaColorPiel)]).grid()
-        botonCrisis= tk.Button(self, image= self.imagenCrisis, command= lambda:[master.switch_frame(PaginaColorPiel)]).grid()
+        botonDespierto= tk.Button(self, image= self.imagenDespierto, command= lambda:(conciencia.Despierto(), [master.switch_frame(PaginaColorPiel)])).grid()
+        botonSomnoliento= tk.Button(self, image= self.imagenSomnoliento, command= lambda:(conciencia.Somnoliento(), [master.switch_frame(PaginaColorPiel)])).grid()
+        botonIrritable= tk.Button(self, image= self.imagenIrritable, command= lambda:(conciencia.Irritable(), [master.switch_frame(PaginaColorPiel)])).grid()
+        botonNoDuerme= tk.Button(self, image= self.imagenNoDuerme, command= lambda:(conciencia.NoDuerme(), [master.switch_frame(PaginaColorPiel)])).grid()
+        botonCrisis= tk.Button(self, image= self.imagenCrisis, command= lambda:(conciencia.Crisis(), [master.switch_frame(PaginaColorPiel)])).grid()
 
 class PaginaColorPiel(tk.Frame):
     def __init__(self, master):
@@ -227,6 +231,7 @@ class PaginaConsolabilidad(tk.Frame):
         botonConsolabilidad= tk.Button(self, image= self.imagenLlantoConsolable, command= lambda:[master.switch_frame(PaginaRuidos)]).grid()
         botonInconsolabilidad= tk.Button(self, image= self.imagenLlantoInconsolable, command= lambda:[master.switch_frame(PaginaRuidos)]).grid()
 
+#Los frames correspondientes al apartado respiratorio tienen la cualidad de no reedigir directamente la sigueinte pagina. Si se selecciona positivamente aparecera un combobox para especificar la clase de patologica encontrada y de ahi se hara la reedirecion a la siguiente pagina. 
 class PaginaRuidos(tk.Frame):
     def __init__(self, master):
         tk.Frame.__init__(self, master)
@@ -316,7 +321,9 @@ class PaginaPosicion(tk.Frame):
 
         botonPosicionSi= tk.Button(self, image= self.imagenRespiracionPosicionSi, command= lambda:[master.switch_frame(PaginaAntecedentes)]).grid()
         botonPosicionNo= tk.Button(self, image= self.imagenRespiracionPosicionNo, command= lambda:[master.switch_frame(PaginaAntecedentes)]).grid()
-
+        
+        
+#A partir de estos frames los combobox ya no aparecen. 
 class PaginaAntecedentes(tk.Frame):
     def __init__(self, master):
         tk.Frame.__init__(self, master)
@@ -345,6 +352,7 @@ class PaginaAbuso(tk.Frame):
         botonAbusoSi= tk.Button(self, image= self.imagenAbusoSi, command= lambda:[master.switch_frame(PaginaResultado)]).grid()
         botonAbusoNo= tk.Button(self, image= self.imagenAbusoNo, command= lambda:[master.switch_frame(PaginaResultado)]).grid()
 
+#En esta pagina se dara a conocer el resultado segun la evaluacion de los parametros descritos anteriormente. Tiene que aparecer el frame del color correspondiente a la gravedad de la urgencia medica. 
 class PaginaResultado(tk.Frame):
     def __init__(self, master):
         tk.Frame.__init__(self, master)
