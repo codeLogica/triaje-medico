@@ -3,6 +3,7 @@ import tkinter as ttk
 from tkinter import PhotoImage
 from Mod_Evaluar import Conciencia
 from Mod_Evaluar import ColoracionPiel
+from Mod_Evaluar import HidraPiel
 
 #Esta seccion sirve para camibiar entre frames durante la ejecucion del programa. 
 class SampleApp(tk.Tk):
@@ -65,6 +66,7 @@ class PaginaConciencia(tk.Frame):
         botonNoDuerme= tk.Button(self, image= self.imagenNoDuerme, command= lambda:(conciencia.NoDuerme(), [master.switch_frame(PaginaColorPiel)])).grid()
         botonCrisis= tk.Button(self, image= self.imagenCrisis, command= lambda:(conciencia.Crisis(), [master.switch_frame(PaginaColorPiel)])).grid()
 
+#Este es el segundo frame con el segundo parametro a evaluar, el de coloracion de la piel. Sigue el mismo funcionamiento del frame anterior y la misma estructura general. 
 class PaginaColorPiel(tk.Frame):
     def __init__(self, master):
         tk.Frame.__init__(self, master)
@@ -88,6 +90,7 @@ class PaginaColorPiel(tk.Frame):
         botonMarmorea= tk.Button(self, image= self.imagenPielMarmorea,command= lambda:(coloracionPiel.Marmorea(), [master.switch_frame(PaginaHidraPiel)])).grid()
         botonPurpurica= tk.Button(self, image= self.imagenPielPurpurica,command= lambda:(coloracionPiel.Purpurica(), [master.switch_frame(PaginaHidraPiel)])).grid()
 
+#Este es el tercer frame con el tercer parametro a evaluar, el de la hidratacion de la piel. Sigue el mismo funcionamiento del frame anterior y la misma estructura general.
 class PaginaHidraPiel(tk.Frame):
     def __init__(self, master):
         tk.Frame.__init__(self, master)
@@ -97,9 +100,11 @@ class PaginaHidraPiel(tk.Frame):
 
         self.imagenHidraPielNormal= tk.PhotoImage(file= "Imagenes\Hidratacion\hidraPielNormal.png")
         self.imagenHidraPielSeca= tk.PhotoImage(file= "Imagenes\Hidratacion\hidraPielSeca.png")
+        
+        hidraPiel = HidraPiel.Opciones()
 
-        botonHidraPielNormal= tk.Button(self, image= self.imagenHidraPielNormal,command= lambda:[master.switch_frame(PaginaHidraMucosa)]).grid()
-        botonHidraPielSeca= tk.Button(self, image= self.imagenHidraPielSeca, command= lambda:[master.switch_frame(PaginaHidraMucosa)]).grid()
+        botonHidraPielNormal= tk.Button(self, image= self.imagenHidraPielNormal,command= lambda: (hidraPiel.Normal, [master.switch_frame(PaginaHidraMucosa)])).grid()
+        botonHidraPielSeca= tk.Button(self, image= self.imagenHidraPielSeca, command= lambda: (hidraPiel.Seca, [master.switch_frame(PaginaHidraMucosa)])).grid()
 
 class PaginaHidraMucosa(tk.Frame):
     def __init__(self, master):
