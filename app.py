@@ -1,7 +1,7 @@
 import tkinter as tk
 import tkinter as ttk
 from tkinter import PhotoImage
-from tkinter.constants import CENTER
+from Mod_Evaluar import Conciencia
 
 class SampleApp(tk.Tk):
     def __init__(self):
@@ -48,9 +48,11 @@ class PaginaConciencia(tk.Frame):
         self.imagenIrritable= tk.PhotoImage(file= "Imagenes/Conciencia/concienciaIrritable.png")
         self.imagenNoDuerme= tk.PhotoImage(file= "Imagenes/Conciencia/concienciaNo.png")
         self.imagenCrisis= tk.PhotoImage(file= "Imagenes/Conciencia/concienciaCrisis.png")
+        
+        conciencia = Conciencia.Opciones()
 
-        botonDespierto= tk.Button(self, image= self.imagenDespierto, command= lambda:[master.switch_frame(PaginaColorPiel)]).grid()
-        botonSomnoliento= tk.Button(self, image= self.imagenSomnoliento, command= lambda:[master.switch_frame(PaginaColorPiel)]).grid()
+        botonDespierto= tk.Button(self, image= self.imagenDespierto, command= lambda: conciencia.Despierto()).grid()
+        botonSomnoliento= tk.Button(self, image= self.imagenSomnoliento, command= lambda: conciencia.Somnoliento()).grid()
         botonIrritable= tk.Button(self, image= self.imagenIrritable, command= lambda:[master.switch_frame(PaginaColorPiel)]).grid()
         botonNoDuerme= tk.Button(self, image= self.imagenNoDuerme, command= lambda:[master.switch_frame(PaginaColorPiel)]).grid()
         botonCrisis= tk.Button(self, image= self.imagenCrisis, command= lambda:[master.switch_frame(PaginaColorPiel)]).grid()
