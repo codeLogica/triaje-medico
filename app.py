@@ -12,6 +12,7 @@ from Mod_Evaluar import HidraTolerancia
 from Mod_Evaluar import Actividad
 from Mod_Evaluar import Tono
 from Mod_Evaluar import Visual
+from Mod_Evaluar import Llanto
 
 #Esta seccion sirve para camibiar entre frames durante la ejecucion del programa. 
 class SampleApp(tk.Tk):
@@ -248,6 +249,7 @@ class PaginaVisual(tk.Frame):
         botonNoMantiene= tk.Button(self, image= self.imagenNoMantiene,command= lambda: (mirada.NoMantiene(), [master.switch_frame(PaginaLlanto)])).grid()
         botonNoDirige= tk.Button(self, image= self.imagenNoDirige,command= lambda: (mirada.NoDirige(), [master.switch_frame(PaginaLlanto)])).grid()
 
+#Este es el doceavo frame con el doceavo parametro a evaluar, la clinica del llanto. Sigue el mismo funcionamiento del frame anterior y la misma estructua general
 class PaginaLlanto(tk.Frame):
     def __init__(self, master):
         tk.Frame.__init__(self, master)
@@ -257,9 +259,11 @@ class PaginaLlanto(tk.Frame):
 
         self.imagenLlantoFuerte= tk.PhotoImage(file= "Imagenes\Llanto\llantoFuerte.png")
         self.imagenLlantoDebil= tk.PhotoImage(file= "Imagenes\Llanto\llantoDebil.png")
+        
+        llanto = Llanto.Opciones()
 
-        botonLlantoFuerte= tk.Button(self, image= self.imagenLlantoFuerte,command= lambda:[master.switch_frame(PaginaConsolabilidad)]).grid()
-        botonLlantoDebil= tk.Button(self, image= self.imagenLlantoDebil,command= lambda:[master.switch_frame(PaginaConsolabilidad)]).grid()
+        botonLlantoFuerte= tk.Button(self, image= self.imagenLlantoFuerte,command= lambda: (llanto.Fuerte(), [master.switch_frame(PaginaConsolabilidad)])).grid()
+        botonLlantoDebil= tk.Button(self, image= self.imagenLlantoDebil,command= lambda: (llanto.Debil(), [master.switch_frame(PaginaConsolabilidad)])).grid()
 
 class PaginaConsolabilidad(tk.Frame):
     def __init__(self, master):
