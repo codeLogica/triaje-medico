@@ -19,6 +19,7 @@ from Mod_Evaluar import Dificultad
 from Mod_Evaluar import Posicion
 from Mod_Evaluar import Antecedentes
 from Mod_Evaluar import Abuso
+from Mod_Evaluar import SignosVitales
 
 #Esta seccion sirve para camibiar entre frames durante la ejecucion del programa. 
 class SampleApp(tk.Tk):
@@ -379,18 +380,49 @@ class PaginaSignosVitales(tk.Frame):
         tituloFrameSV= tk.Label(self, text= "Signos Vitales")
         tituloFrameSV.grid()
         
+        validar= SignosVitales.Validar()
+        
         tk.Label(self, text= "Frecuencia Cardiaca").grid(row=2, column=1)
-        freCardiaca= tk.Entry(self).grid(row=2, column=2)
+        freCardiaca= tk.Entry(self, 
+                              validate= "key", 
+                              validatecommand= self.register(validar.Dato({"%S"}))
+        )
+        freCardiaca.grid(row=2, column=2)
+        
         tk.Label(self, text= "Frecuencia Respiratoria").grid(row=3, column=1)
-        freRespiratoria= tk.Entry(self).grid(row=3, column=2)
+        freRespiratoria= tk.Entry(self, 
+                                  validate= "key", 
+                                  validatecommand= self.register(validar.Dato({"%S"}))
+        )
+        freRespiratoria.grid(row=3, column=2)
+        
         tk.Label(self, text= "Presion Sistolica").grid(row=4, column=1)
-        presionSistolica= tk.Entry(self).grid(row=4, column=2)
+        presionSistolica= tk.Entry(self, 
+                                   validate= "key", 
+                                   validatecommand= self.register(validar.Dato({"%S"}))
+        )
+        presionSistolica.grid(row=4, column=2)
+        
         tk.Label(self, text= "Presion Diastolica").grid(row=5, column=1)
-        presionDiastolica= tk.Entry(self).grid(row=5, column=2)
+        presionDiastolica= tk.Entry(self, 
+                                    validate= "key", 
+                                    validatecommand= self.register(validar.Dato({"%S"}))
+        )
+        presionDiastolica.grid(row=5, column=2)
+        
         tk.Label(self, text= "Temperatura").grid(row=6, column=1)
-        temperatura= tk.Entry(self).grid(row=6, column=2)
+        temperatura= tk.Entry(self, 
+                              validate= "key", 
+                              validatecommand= self.register(validar.Dato({"%S"}))
+        )
+        temperatura.grid(row=6, column=2)
+        
         tk.Label(self, text= "Saturacion de oxigeno (satO2)").grid(row=7, column=1)
-        saturacionO2= tk.Entry(self).grid(row=7, column=2)
+        saturacionO2= tk.Entry(self, 
+                               validate= "key", 
+                               validatecommand= self.register(validar.Dato({"%S"}))
+        )
+        saturacionO2.grid(row=7, column=2)
 
 #En esta pagina se dara a conocer el resultado segun la evaluacion de los parametros descritos anteriormente. Tiene que aparecer el frame del color correspondiente a la gravedad de la urgencia medica. 
 class PaginaResultado(tk.Frame):
