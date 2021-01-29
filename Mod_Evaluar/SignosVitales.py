@@ -11,3 +11,4 @@ class Validar():
     def Dato(datoIngresado):
         return Text.isdecimal()
         
+ 
