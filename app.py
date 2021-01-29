@@ -7,6 +7,7 @@ from Mod_Evaluar import HidraPiel
 from Mod_Evaluar import HidraMucosa
 from Mod_Evaluar import HidraOjos
 from Mod_Evaluar import HidraPliegue
+from Mod_Evaluar import HidraVomito
 
 #Esta seccion sirve para camibiar entre frames durante la ejecucion del programa. 
 class SampleApp(tk.Tk):
@@ -157,6 +158,7 @@ class PaginaPliegue(tk.Frame):
         botonHidraPlieguePositivo= tk.Button(self, image= self.imagenHidraPlieguePositivo, command= lambda: (hidraPliegue.Positivo(), [master.switch_frame(PaginaHidraVomito)])).grid()
         botonHidraPliegueNegativo= tk.Button(self, image= self.imagenHidraPliegueNegativo, command= lambda: (hidraPliegue.Negativo(), [master.switch_frame(PaginaHidraVomito)])).grid()
 
+#Este es el septimo frame con el septimo parametro a evaluar, el estado de hidratacion segun la presencia o ausencia de vomito. Sigue el mismo funcionamiento del frame anterior y la misma estructura general.
 class PaginaHidraVomito(tk.Frame):
     def __init__(self, master):
         tk.Frame.__init__(self, master)
@@ -166,9 +168,11 @@ class PaginaHidraVomito(tk.Frame):
 
         self.imagenHidraVomitoPresente= tk.PhotoImage(file= "Imagenes\Hidratacion\hidraVomitoPresente.png")
         self.imagenHidraVomitoAusente= tk.PhotoImage(file= "Imagenes\Hidratacion\hidraVomitoAusente.png")
+        
+        hidraVomito = HidraVomito.Opciones()
 
-        botonHidraVomitoPresente= tk.Button(self, image= self.imagenHidraVomitoPresente, command= lambda:[master.switch_frame(PaginaHidraTolerancia)]).grid()
-        botonHidraVomitoAusente= tk.Button(self, image= self.imagenHidraVomitoAusente, command= lambda:[master.switch_frame(PaginaHidraTolerancia)]).grid()
+        botonHidraVomitoPresente= tk.Button(self, image= self.imagenHidraVomitoPresente, command= lambda: (hidraVomito.Presente(), [master.switch_frame(PaginaHidraTolerancia)])).grid()
+        botonHidraVomitoAusente= tk.Button(self, image= self.imagenHidraVomitoAusente, command= lambda: (hidraVomito.Ausente(), [master.switch_frame(PaginaHidraTolerancia)])).grid()
 
 class PaginaHidraTolerancia(tk.Frame):
     def __init__(self, master):
