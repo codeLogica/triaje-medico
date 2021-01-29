@@ -9,6 +9,7 @@ from Mod_Evaluar import HidraOjos
 from Mod_Evaluar import HidraPliegue
 from Mod_Evaluar import HidraVomito
 from Mod_Evaluar import HidraTolerancia
+from Mod_Evaluar import Actividad
 
 #Esta seccion sirve para camibiar entre frames durante la ejecucion del programa. 
 class SampleApp(tk.Tk):
@@ -191,6 +192,7 @@ class PaginaHidraTolerancia(tk.Frame):
         botonHidraToleranciaSi= tk.Button(self, image= self.imagenHidraToleranciaSi, command= lambda: (tolerancia.SiTolera(), [master.switch_frame(PaginaActividad)])).grid()
         botonHidraToleranciaNo= tk.Button(self, image= self.imagenHidraToleranciaNo, command= lambda: (tolerancia.NoTolera(), [master.switch_frame(PaginaActividad)])).grid()
 
+#Este es el noveno frame con el noveno parametro a evaluar, la actividad. Sigue el mismo funcionamiento del frame anrerior y la misma estrctura general. 
 class PaginaActividad(tk.Frame):
     def __init__(self, master):
         tk.Frame.__init__(self, master)
@@ -202,11 +204,13 @@ class PaginaActividad(tk.Frame):
         self.imagenConfundido= tk.PhotoImage(file= "Imagenes\Actividad\cactividadConfundido.png")
         self.imagenLetargico= tk.PhotoImage(file= "Imagenes\Actividad\cactividadLetargico.png")
         self.imagenInconsciente= tk.PhotoImage(file= "Imagenes\Actividad\cactividadInconsciente.png")
+        
+        actividad = Actividad.Opciones()
 
-        botonJuega= tk.Button(self, image= self.imagenJuega, command= lambda:[master.switch_frame(PaginaTono)]).grid()
-        botonConfundido= tk.Button(self, image= self.imagenConfundido, command= lambda:[master.switch_frame(PaginaTono)]).grid()
-        botonLetargico= tk.Button(self, image= self.imagenLetargico, command= lambda:[master.switch_frame(PaginaTono)]).grid()
-        botonInconsciente= tk.Button(self, image= self.imagenInconsciente, command= lambda:[master.switch_frame(PaginaTono)]).grid()
+        botonJuega= tk.Button(self, image= self.imagenJuega, command= lambda: (actividad.Juega(), [master.switch_frame(PaginaTono)])).grid()
+        botonConfundido= tk.Button(self, image= self.imagenConfundido, command= lambda: (actividad.Confundido(), [master.switch_frame(PaginaTono)])).grid()
+        botonLetargico= tk.Button(self, image= self.imagenLetargico, command= lambda: (actividad.Letargico(), [master.switch_frame(PaginaTono)])).grid()
+        botonInconsciente= tk.Button(self, image= self.imagenInconsciente, command= lambda: (actividad.Inconsciente(), [master.switch_frame(PaginaTono)])).grid()
 
 class PaginaTono(tk.Frame):
     def __init__(self, master):
