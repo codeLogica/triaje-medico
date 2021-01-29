@@ -11,6 +11,7 @@ from Mod_Evaluar import HidraVomito
 from Mod_Evaluar import HidraTolerancia
 from Mod_Evaluar import Actividad
 from Mod_Evaluar import Tono
+from Mod_Evaluar import Visual
 
 #Esta seccion sirve para camibiar entre frames durante la ejecucion del programa. 
 class SampleApp(tk.Tk):
@@ -26,7 +27,7 @@ class SampleApp(tk.Tk):
         self._frame = new_frame
         self._frame.pack()
         
-#Esta es la pagina principal del programa, donde se muestra infomracion relevante. Se inicializa el frame y dentro encontramos los widgets necesarios. Se basa en una serie de imagenes con los parametros a analizar y dependiendo de la seleccion se evaluan en otro modulo. 
+#Esta es la pagina principal del programa, donde se muestra informacion relevante. Se inicializa el frame y dentro encontramos los widgets necesarios. Se basa en una serie de imagenes con los parametros a analizar y dependiendo de la seleccion se evaluan en otro modulo. 
 #Se sigue el siguiente esquema en todos los frames:
 #Inizialicacion --> informacion --> imagenes --> llamada al modulo con el parametro a evaluar --> botones 
 class PaginaGeneral(tk.Frame):
@@ -229,6 +230,7 @@ class PaginaTono(tk.Frame):
         botonEutonico= tk.Button(self, image= self.imagenEutonico,command= lambda: (tono.Eutonico(), [master.switch_frame(PaginaVisual)])).grid()
         botonHipotonico= tk.Button(self, image= self.imagenHipotonico,command= lambda: (tono.Hipotonico(),[master.switch_frame(PaginaVisual)])).grid()
 
+#Este es el onceavo frame con el onceavo parametro a evaluar, el contacto visual. Sigue el mismo funcionamiento del frame anterior y la misma estructura general. 
 class PaginaVisual(tk.Frame):
     def __init__(self, master):
         tk.Frame.__init__(self, master)
@@ -239,10 +241,12 @@ class PaginaVisual(tk.Frame):
         self.imagenMantiene= tk.PhotoImage(file= "Imagenes\Visual\cvisualMantiene.png")
         self.imagenNoMantiene= tk.PhotoImage(file= "Imagenes\Visual\cvisualNoMantiene.png")
         self.imagenNoDirige= tk.PhotoImage(file= "Imagenes\Visual\cvisualNoDirige.png")
+        
+        mirada = Visual.Opciones()
 
-        botonMantiene= tk.Button(self, image= self.imagenMantiene,command= lambda:[master.switch_frame(PaginaLlanto)]).grid()
-        botonNoMantiene= tk.Button(self, image= self.imagenNoMantiene,command= lambda:[master.switch_frame(PaginaLlanto)]).grid()
-        botonNoDirige= tk.Button(self, image= self.imagenNoDirige,command= lambda:[master.switch_frame(PaginaLlanto)]).grid()
+        botonMantiene= tk.Button(self, image= self.imagenMantiene,command= lambda: (mirada.Mantiene(), [master.switch_frame(PaginaLlanto)])).grid()
+        botonNoMantiene= tk.Button(self, image= self.imagenNoMantiene,command= lambda: (mirada.NoMantiene(), [master.switch_frame(PaginaLlanto)])).grid()
+        botonNoDirige= tk.Button(self, image= self.imagenNoDirige,command= lambda: (mirada.NoDirige(), [master.switch_frame(PaginaLlanto)])).grid()
 
 class PaginaLlanto(tk.Frame):
     def __init__(self, master):
