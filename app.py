@@ -14,6 +14,7 @@ from Mod_Evaluar import Tono
 from Mod_Evaluar import Visual
 from Mod_Evaluar import Llanto
 from Mod_Evaluar import Consolabilidad
+from Mod_Evaluar import Ruidos
 
 #Esta seccion sirve para camibiar entre frames durante la ejecucion del programa. 
 class SampleApp(tk.Tk):
@@ -296,32 +297,12 @@ class PaginaRuidos(tk.Frame):
 
         self.imagenRespiracionRuidosSi= tk.PhotoImage(file= "Imagenes\Respiracion\cruidosSi.png")
         self.imagenRespiracionRuidosNo= tk.PhotoImage(file= "Imagenes\Respiracion\cruidosNo.png")
-
-        botonRuidosSi= tk.Button(self, image= self.imagenRespiracionRuidosSi, command= lambda:[master.switch_frame(PaginaDificultad)]).grid()
-        botonRuidosNo= tk.Button(self, image= self.imagenRespiracionRuidosNo, command= lambda:[ master.switch_frame(PaginaDificultad)]).grid()
         
-        if (self.opcionRespiracionRuidosSi):
-            def ruidoElegido(*args):
-                comboRuidoElegido= comboRuidos.get()
-                if comboRuidoElegido== "Gruñido":
-                    pass
-                elif comboRuidoElegido== "Estridor":
-                    pass
-                elif comboRuidoElegido== "Disfonia":
-                    pass
-                elif comboRuidoElegido== "Quejido":
-                    pass
-                elif comboRuidoElegido== "Silibancia":
-                    pass
-                    
-            comboRuidos= ttk.Combobox(self)
-            comboRuidos['values'] =("Gruñido", "Estridor", "Disfonia", "Quejido", "Silibancia") 
-            comboRuidos.state(["readonly"])
-            comboRuidos.bind("<<ComboboxSelected>>", ruidoElegido)
-            comboRuidos.grid()
-            
-        elif (self.opcionRespiracionRuidosNo):
-            trianguloEvaluacionPediatricaRespiracion= True
+        ruidos = Ruidos.Opciones()
+
+        botonRuidosPresentes= tk.Button(self, image= self.imagenRespiracionRuidosSi, command= lambda: (ruidos.Presentes(), [master.switch_frame(PaginaDificultad)])).grid()
+        botonRuidosAusentes= tk.Button(self, image= self.imagenRespiracionRuidosNo, command= lambda: (ruidos.Ausentes(), [master.switch_frame(PaginaDificultad)])).grid()
+        
 
 class PaginaDificultad(tk.Frame):
     def __init__(self, master):
