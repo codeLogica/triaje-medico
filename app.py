@@ -10,6 +10,7 @@ from Mod_Evaluar import HidraPliegue
 from Mod_Evaluar import HidraVomito
 from Mod_Evaluar import HidraTolerancia
 from Mod_Evaluar import Actividad
+from Mod_Evaluar import Tono
 
 #Esta seccion sirve para camibiar entre frames durante la ejecucion del programa. 
 class SampleApp(tk.Tk):
@@ -212,6 +213,7 @@ class PaginaActividad(tk.Frame):
         botonLetargico= tk.Button(self, image= self.imagenLetargico, command= lambda: (actividad.Letargico(), [master.switch_frame(PaginaTono)])).grid()
         botonInconsciente= tk.Button(self, image= self.imagenInconsciente, command= lambda: (actividad.Inconsciente(), [master.switch_frame(PaginaTono)])).grid()
 
+#Este es el decimo frame con el decimo parametro a evaluar, el tono muscular. Sigue el mismo funcionamiento del frame anterior y la misma estrctura general. 
 class PaginaTono(tk.Frame):
     def __init__(self, master):
         tk.Frame.__init__(self, master)
@@ -221,9 +223,11 @@ class PaginaTono(tk.Frame):
 
         self.imagenEutonico= tk.PhotoImage(file= "Imagenes\Tono\ctonoEutonico.png")
         self.imagenHipotonico= tk.PhotoImage(file= "Imagenes\Tono\ctonoHipotonico.png")
+        
+        tono = Tono.Opciones()
 
-        botonEutonico= tk.Button(self, image= self.imagenEutonico,command= lambda:[master.switch_frame(PaginaVisual)]).grid()
-        botonHipotonico= tk.Button(self, image= self.imagenHipotonico,command= lambda:[master.switch_frame(PaginaVisual)]).grid()
+        botonEutonico= tk.Button(self, image= self.imagenEutonico,command= lambda: (tono.Eutonico(), [master.switch_frame(PaginaVisual)])).grid()
+        botonHipotonico= tk.Button(self, image= self.imagenHipotonico,command= lambda: (tono.Hipotonico(),[master.switch_frame(PaginaVisual)])).grid()
 
 class PaginaVisual(tk.Frame):
     def __init__(self, master):
