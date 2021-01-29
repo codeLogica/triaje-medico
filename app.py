@@ -378,49 +378,71 @@ class PaginaSignosVitales(tk.Frame):
     def __init__(self, master):
         tk.Frame.__init__(self, master)
         tituloFrameSV= tk.Label(self, text= "Signos Vitales")
-        tituloFrameSV.grid()
+        tituloFrameSV.grid(row=0, column=1, columnspan=2)
         
-        validar= SignosVitales.Validar()
+        #validar= SignosVitales.Validar()
         
-        tk.Label(self, text= "Frecuencia Cardiaca").grid(row=2, column=1)
-        freCardiaca= tk.Entry(self, 
-                              validate= "key", 
-                              validatecommand= self.register(validar.Dato({"%S"}))
+        def validar_datos(entrada_datos):            
+            if len(entrada_datos) > 3:
+                return False
+            checks = [] 
+            for i, char in enumerate(entrada_datos):
+                if i in (3, 3):
+                    checks.append(char == "/")
+                else:
+                    checks.append(char.isdecimal())
+            return all(checks)
+        
+        def validar_temperatura(entrada_datos):
+            if len(entrada_datos) > 5:
+                return False
+            checks = []
+            for i, char in enumerate(entrada_datos):
+                if i in (2, 2):
+                    checks.append(char == ".")
+                else:
+                    checks.append(char.isdecimal())
+            return all(checks)
+    
+        tk.Label(self, text= "Frecuencia Cardiaca").grid(row=2, column=1, sticky="e")
+        freCardiaca= tk.Entry(self,
+                              validate="key",
+                              validatecommand=(self.register(validar_datos), "%P")
         )
         freCardiaca.grid(row=2, column=2)
         
-        tk.Label(self, text= "Frecuencia Respiratoria").grid(row=3, column=1)
-        freRespiratoria= tk.Entry(self, 
-                                  validate= "key", 
-                                  validatecommand= self.register(validar.Dato({"%S"}))
+        tk.Label(self, text= "Frecuencia Respiratoria").grid(row=3, column=1, sticky="e")
+        freRespiratoria= tk.Entry(self,
+                                  validate="key",
+                                  validatecommand=(self.register(validar_datos), "%P")
         )
         freRespiratoria.grid(row=3, column=2)
         
-        tk.Label(self, text= "Presion Sistolica").grid(row=4, column=1)
-        presionSistolica= tk.Entry(self, 
-                                   validate= "key", 
-                                   validatecommand= self.register(validar.Dato({"%S"}))
+        tk.Label(self, text= "Presion Sistolica").grid(row=4, column=1, sticky="e")
+        presionSistolica= tk.Entry(self,
+                                   validate="key",
+                                   validatecommand=(self.register(validar_datos), "%P")
         )
         presionSistolica.grid(row=4, column=2)
         
-        tk.Label(self, text= "Presion Diastolica").grid(row=5, column=1)
-        presionDiastolica= tk.Entry(self, 
-                                    validate= "key", 
-                                    validatecommand= self.register(validar.Dato({"%S"}))
+        tk.Label(self, text= "Presion Diastolica").grid(row=5, column=1, sticky="e")
+        presionDiastolica= tk.Entry(self,
+                                    validate="key",
+                                    validatecommand=(self.register(validar_datos), "%P")
         )
         presionDiastolica.grid(row=5, column=2)
         
-        tk.Label(self, text= "Temperatura").grid(row=6, column=1)
-        temperatura= tk.Entry(self, 
-                              validate= "key", 
-                              validatecommand= self.register(validar.Dato({"%S"}))
+        tk.Label(self, text= "Temperatura").grid(row=6, column=1, sticky="e")
+        temperatura= tk.Entry(self,
+                              validate="key",
+                              validatecommand=(self.register(validar_temperatura), "%P")
         )
         temperatura.grid(row=6, column=2)
         
-        tk.Label(self, text= "Saturacion de oxigeno (satO2)").grid(row=7, column=1)
-        saturacionO2= tk.Entry(self, 
-                               validate= "key", 
-                               validatecommand= self.register(validar.Dato({"%S"}))
+        tk.Label(self, text= "Saturacion de oxigeno (satO2)").grid(row=7, column=1, sticky="e")
+        saturacionO2= tk.Entry(self,
+                               validate="key",
+                               validatecommand=(self.register(validar_datos), "%P")
         )
         saturacionO2.grid(row=7, column=2)
 
