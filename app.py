@@ -13,6 +13,7 @@ from Mod_Evaluar import Actividad
 from Mod_Evaluar import Tono
 from Mod_Evaluar import Visual
 from Mod_Evaluar import Llanto
+from Mod_Evaluar import Consolabilidad
 
 #Esta seccion sirve para camibiar entre frames durante la ejecucion del programa. 
 class SampleApp(tk.Tk):
@@ -249,7 +250,7 @@ class PaginaVisual(tk.Frame):
         botonNoMantiene= tk.Button(self, image= self.imagenNoMantiene,command= lambda: (mirada.NoMantiene(), [master.switch_frame(PaginaLlanto)])).grid()
         botonNoDirige= tk.Button(self, image= self.imagenNoDirige,command= lambda: (mirada.NoDirige(), [master.switch_frame(PaginaLlanto)])).grid()
 
-#Este es el doceavo frame con el doceavo parametro a evaluar, la clinica del llanto. Sigue el mismo funcionamiento del frame anterior y la misma estructua general
+#Este es el doceavo frame con el doceavo parametro a evaluar, la clinica del llanto. Sigue el mismo funcionamiento del frame anterior y la misma estructua general.
 class PaginaLlanto(tk.Frame):
     def __init__(self, master):
         tk.Frame.__init__(self, master)
@@ -265,6 +266,7 @@ class PaginaLlanto(tk.Frame):
         botonLlantoFuerte= tk.Button(self, image= self.imagenLlantoFuerte,command= lambda: (llanto.Fuerte(), [master.switch_frame(PaginaConsolabilidad)])).grid()
         botonLlantoDebil= tk.Button(self, image= self.imagenLlantoDebil,command= lambda: (llanto.Debil(), [master.switch_frame(PaginaConsolabilidad)])).grid()
 
+#Este es el treceavo frame con el traceavo parametro a evaluar, la capacidad de ser consolado. Sigue el mismo funcionamiento del frame anterior y la misma estructura general. 
 class PaginaConsolabilidad(tk.Frame):
     def __init__(self, master):
         tk.Frame.__init__(self, master)
@@ -274,9 +276,11 @@ class PaginaConsolabilidad(tk.Frame):
 
         self.imagenLlantoConsolable= tk.PhotoImage(file= "Imagenes\Llanto\llantoConsolable.png")
         self.imagenLlantoInconsolable= tk.PhotoImage(file= "Imagenes\Llanto\llantoInconsolable.png")
+        
+        es = Consolabilidad.Opciones()
 
-        botonConsolabilidad= tk.Button(self, image= self.imagenLlantoConsolable, command= lambda:[master.switch_frame(PaginaRuidos)]).grid()
-        botonInconsolabilidad= tk.Button(self, image= self.imagenLlantoInconsolable, command= lambda:[master.switch_frame(PaginaRuidos)]).grid()
+        botonConsolabilidad= tk.Button(self, image= self.imagenLlantoConsolable, command= lambda: (es.Consolable(), [master.switch_frame(PaginaRuidos)])).grid()
+        botonInconsolabilidad= tk.Button(self, image= self.imagenLlantoInconsolable, command= lambda: (es.Inconsolable(), [master.switch_frame(PaginaRuidos)])).grid()
 
 #Los frames correspondientes al apartado respiratorio tienen la cualidad de no reedigir directamente la sigueinte pagina. Si se selecciona positivamente aparecera un combobox para especificar la clase de patologica encontrada y de ahi se hara la reedirecion a la siguiente pagina. 
 class PaginaRuidos(tk.Frame):
