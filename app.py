@@ -16,6 +16,8 @@ from Mod_Evaluar import Llanto
 from Mod_Evaluar import Consolabilidad
 from Mod_Evaluar import Ruidos
 
+from Mod_Evaluar import Posicion
+
 #Esta seccion sirve para camibiar entre frames durante la ejecucion del programa. 
 class SampleApp(tk.Tk):
     def __init__(self):
@@ -350,9 +352,11 @@ class PaginaPosicion(tk.Frame):
 
         self.imagenRespiracionPosicionSi= tk.PhotoImage(file= "Imagenes\Respiracion\posicionSi.png")
         self.imagenRespiracionPosicionNo= tk.PhotoImage(file= "Imagenes\Respiracion\posicionNo.png")
+        
+        posicionPatologica = Posicion.Opciones()
 
-        botonPosicionSi= tk.Button(self, image= self.imagenRespiracionPosicionSi, command= lambda:[master.switch_frame(PaginaAntecedentes)]).grid()
-        botonPosicionNo= tk.Button(self, image= self.imagenRespiracionPosicionNo, command= lambda:[master.switch_frame(PaginaAntecedentes)]).grid()
+        botonPosicionSi= tk.Button(self, image= self.imagenRespiracionPosicionSi, command= lambda: (posicionPatologica.Si(), [master.switch_frame(PaginaAntecedentes)])).grid()
+        botonPosicionNo= tk.Button(self, image= self.imagenRespiracionPosicionNo, command= lambda: (posicionPatologica.No(), [master.switch_frame(PaginaAntecedentes)])).grid()
         
         
 #A partir de estos frames los combobox ya no aparecen. 
