@@ -18,6 +18,7 @@ from Mod_Evaluar import Ruidos
 from Mod_Evaluar import Dificultad
 from Mod_Evaluar import Posicion
 from Mod_Evaluar import Antecedentes
+from Mod_Evaluar import Abuso
 
 #Esta seccion sirve para camibiar entre frames durante la ejecucion del programa. 
 class SampleApp(tk.Tk):
@@ -366,9 +367,11 @@ class PaginaAbuso(tk.Frame):
 
         self.imagenAbusoSi= tk.PhotoImage(file= "Imagenes\Antecedentes\cabusoSi.png")
         self.imagenAbusoNo= tk.PhotoImage(file= "Imagenes\Antecedentes\cabusoNo.png")
+        
+        abuso = Abuso.Opciones()
 
-        botonAbusoSi= tk.Button(self, image= self.imagenAbusoSi, command= lambda:[master.switch_frame(PaginaResultado)]).grid()
-        botonAbusoNo= tk.Button(self, image= self.imagenAbusoNo, command= lambda:[master.switch_frame(PaginaResultado)]).grid()
+        botonAbusoPresente= tk.Button(self, image= self.imagenAbusoSi, command= lambda: (abuso.Presente(), [master.switch_frame(PaginaResultado)])).grid()
+        botonAbusoAusente= tk.Button(self, image= self.imagenAbusoNo, command= lambda: (abuso.Ausente(), [master.switch_frame(PaginaResultado)])).grid()
 
 #En esta pagina se dara a conocer el resultado segun la evaluacion de los parametros descritos anteriormente. Tiene que aparecer el frame del color correspondiente a la gravedad de la urgencia medica. 
 class PaginaResultado(tk.Frame):
