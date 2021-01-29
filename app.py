@@ -25,7 +25,7 @@ class SampleApp(tk.Tk):
     def __init__(self):
         tk.Tk.__init__(self)
         self._frame = None
-        self.switch_frame(PaginaGeneral)
+        self.switch_frame(PaginaSignosVitales)
 
     def switch_frame(self, frame_class):
         new_frame = frame_class(self)
@@ -370,8 +370,27 @@ class PaginaAbuso(tk.Frame):
         
         abuso = Abuso.Opciones()
 
-        botonAbusoPresente= tk.Button(self, image= self.imagenAbusoSi, command= lambda: (abuso.Presente(), [master.switch_frame(PaginaResultado)])).grid()
-        botonAbusoAusente= tk.Button(self, image= self.imagenAbusoNo, command= lambda: (abuso.Ausente(), [master.switch_frame(PaginaResultado)])).grid()
+        botonAbusoPresente= tk.Button(self, image= self.imagenAbusoSi, command= lambda: (abuso.Presente(), [master.switch_frame(PaginaSignosVitales)])).grid()
+        botonAbusoAusente= tk.Button(self, image= self.imagenAbusoNo, command= lambda: (abuso.Ausente(), [master.switch_frame(PaginaSignosVitales)])).grid()
+
+class PaginaSignosVitales(tk.Frame):
+    def __init__(self, master):
+        tk.Frame.__init__(self, master)
+        tituloFrameSV= tk.Label(self, text= "Signos Vitales")
+        tituloFrameSV.grid()
+        
+        tk.Label(self, text= "Frecuencia Cardiaca").grid(row=2, column=1)
+        freCardiaca= tk.Entry(self).grid(row=2, column=2)
+        tk.Label(self, text= "Frecuencia Respiratoria").grid(row=3, column=1)
+        freRespiratoria= tk.Entry(self).grid(row=3, column=2)
+        tk.Label(self, text= "Presion Sistolica").grid(row=4, column=1)
+        presionSistolica= tk.Entry(self).grid(row=4, column=2)
+        tk.Label(self, text= "Presion Diastolica").grid(row=5, column=1)
+        presionDiastolica= tk.Entry(self).grid(row=5, column=2)
+        tk.Label(self, text= "Temperatura").grid(row=6, column=1)
+        temperatura= tk.Entry(self).grid(row=6, column=2)
+        tk.Label(self, text= "Saturacion de oxigeno (satO2)").grid(row=7, column=1)
+        saturacionO2= tk.Entry(self).grid(row=7, column=2)
 
 #En esta pagina se dara a conocer el resultado segun la evaluacion de los parametros descritos anteriormente. Tiene que aparecer el frame del color correspondiente a la gravedad de la urgencia medica. 
 class PaginaResultado(tk.Frame):
