@@ -15,7 +15,7 @@ from Mod_Evaluar import Visual
 from Mod_Evaluar import Llanto
 from Mod_Evaluar import Consolabilidad
 from Mod_Evaluar import Ruidos
-
+from Mod_Evaluar import Dificultad
 from Mod_Evaluar import Posicion
 
 #Esta seccion sirve para camibiar entre frames durante la ejecucion del programa. 
@@ -305,7 +305,6 @@ class PaginaRuidos(tk.Frame):
         botonRuidosPresentes= tk.Button(self, image= self.imagenRespiracionRuidosSi, command= lambda: (ruidos.Presentes(), [master.switch_frame(PaginaDificultad)])).grid()
         botonRuidosAusentes= tk.Button(self, image= self.imagenRespiracionRuidosNo, command= lambda: (ruidos.Ausentes(), [master.switch_frame(PaginaDificultad)])).grid()
         
-
 class PaginaDificultad(tk.Frame):
     def __init__(self, master):
         tk.Frame.__init__(self, master)
@@ -317,32 +316,12 @@ class PaginaDificultad(tk.Frame):
 
         self.imagenRespiracionDificultadSi= tk.PhotoImage(file= "Imagenes\Respiracion\dificultadSi.png")
         self.imagenRespiracionDificultadNo= tk.PhotoImage(file= "Imagenes\Respiracion\dificultadNo.png")
-
-        botonDificultadSi= tk.Button(self, image= self.imagenRespiracionDificultadSi, command= lambda: [master.switch_frame(PaginaPosicion)]).grid()
-        botonDificultadNo= tk.Button(self, image= self.imagenRespiracionDificultadNo, command= lambda:[master.switch_frame(PaginaPosicion)]).grid()
         
-        if (self.opcionRespiracionDificultadSi):
-            def dificultadElegida(*args):
-                comboDificultadElegida= comboDificultad.get()
-                if comboDificultadElegida== "Tiraje Intercostal":
-                    pass
-                elif comboDificultadElegida=="Retracciones":
-                    pass
-                elif comboDificultadElegida=="Aleteo Nasal":
-                    pass
-                elif comboDificultadElegida=="Dis.Toraco Abdominal":
-                    pass
+        dificultadResp = Dificultad.Opciones()
 
-            comboDificultad= ttk.Combobox(self)
-            comboDificultad['values']= ("Tiraje Intercostal", "Retracciones","Aleteo Nasal","Dis.Toraco Abdominal")
-            comboDificultad.state(["readonly"])
-            comboDificultad.bind("<<ComboboxSelected>>", dificultadElegida)
-            comboDificultad.grid()
-
-        elif (self.opcionRespiracionDificultadNo):
-            trianguloEvaluacionPediatricaRespiracion= True
-
-
+        botonDificultadPresente= tk.Button(self, image= self.imagenRespiracionDificultadSi, command= lambda: (dificultadResp.Presente(),  [master.switch_frame(PaginaPosicion)])).grid()
+        botonDificultadAusente= tk.Button(self, image= self.imagenRespiracionDificultadNo, command= lambda: (dificultadResp.Ausente(), [master.switch_frame(PaginaPosicion)])).grid()
+        
 class PaginaPosicion(tk.Frame):
     def __init__(self, master):
         tk.Frame.__init__(self, master)
