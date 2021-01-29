@@ -8,6 +8,7 @@ from Mod_Evaluar import HidraMucosa
 from Mod_Evaluar import HidraOjos
 from Mod_Evaluar import HidraPliegue
 from Mod_Evaluar import HidraVomito
+from Mod_Evaluar import HidraTolerancia
 
 #Esta seccion sirve para camibiar entre frames durante la ejecucion del programa. 
 class SampleApp(tk.Tk):
@@ -174,6 +175,7 @@ class PaginaHidraVomito(tk.Frame):
         botonHidraVomitoPresente= tk.Button(self, image= self.imagenHidraVomitoPresente, command= lambda: (hidraVomito.Presente(), [master.switch_frame(PaginaHidraTolerancia)])).grid()
         botonHidraVomitoAusente= tk.Button(self, image= self.imagenHidraVomitoAusente, command= lambda: (hidraVomito.Ausente(), [master.switch_frame(PaginaHidraTolerancia)])).grid()
 
+#Este es el octavo frame con el octavo parametro a evaluar, la tolerancia a la via oral. Sigue el mismo funcionamiento del frame anterior y la misma estrctura general.
 class PaginaHidraTolerancia(tk.Frame):
     def __init__(self, master):
         tk.Frame.__init__(self, master)
@@ -183,9 +185,11 @@ class PaginaHidraTolerancia(tk.Frame):
 
         self.imagenHidraToleranciaSi= tk.PhotoImage(file= "Imagenes\Hidratacion\hidraToleranciaSi.png")
         self.imagenHidraToleranciaNo= tk.PhotoImage(file= "Imagenes\Hidratacion\hidraToleranciaNo.png")
+        
+        tolerancia = HidraTolerancia.Opciones()
 
-        botonHidraToleranciaSi= tk.Button(self, image= self.imagenHidraToleranciaSi, command= lambda:[master.switch_frame(PaginaActividad)]).grid()
-        botonHidraToleranciaNo= tk.Button(self, image= self.imagenHidraToleranciaNo, command= lambda:[master.switch_frame(PaginaActividad)]).grid()
+        botonHidraToleranciaSi= tk.Button(self, image= self.imagenHidraToleranciaSi, command= lambda: (tolerancia.SiTolera(), [master.switch_frame(PaginaActividad)])).grid()
+        botonHidraToleranciaNo= tk.Button(self, image= self.imagenHidraToleranciaNo, command= lambda: (tolerancia.NoTolera(), [master.switch_frame(PaginaActividad)])).grid()
 
 class PaginaActividad(tk.Frame):
     def __init__(self, master):
