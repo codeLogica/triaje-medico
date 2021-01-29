@@ -4,6 +4,7 @@ from tkinter import PhotoImage
 from Mod_Evaluar import Conciencia
 from Mod_Evaluar import ColoracionPiel
 from Mod_Evaluar import HidraPiel
+from Mod_Evaluar import HidraMucosa
 
 #Esta seccion sirve para camibiar entre frames durante la ejecucion del programa. 
 class SampleApp(tk.Tk):
@@ -106,6 +107,7 @@ class PaginaHidraPiel(tk.Frame):
         botonHidraPielNormal= tk.Button(self, image= self.imagenHidraPielNormal,command= lambda: (hidraPiel.Normal, [master.switch_frame(PaginaHidraMucosa)])).grid()
         botonHidraPielSeca= tk.Button(self, image= self.imagenHidraPielSeca, command= lambda: (hidraPiel.Seca, [master.switch_frame(PaginaHidraMucosa)])).grid()
 
+#Este es el cuarto frame con el cuarto parametro a evluar, el de la hidratacion de las mucosas. Sigue el mismo funcionamiento del frame anterior y la misma estructura general.
 class PaginaHidraMucosa(tk.Frame):
     def __init__(self, master):
         tk.Frame.__init__(self, master)
@@ -115,9 +117,11 @@ class PaginaHidraMucosa(tk.Frame):
 
         self.imagenHidraMucosaNormal= tk.PhotoImage(file= "Imagenes\Hidratacion\hidraMucosaNormal.png")
         self.imagenHidraMucosaSeca= tk.PhotoImage(file= "Imagenes\Hidratacion\hidraMucosaSeca.png")
+        
+        hidraMucosa = HidraMucosa.Opciones()
 
-        botonHidraMucosaNormal= tk.Button(self, image= self.imagenHidraMucosaNormal, command= lambda:[master.switch_frame(PaginaHidraOjos)]).grid()
-        botonHidraMucosaSeca= tk.Button(self, image= self.imagenHidraMucosaSeca, command= lambda:[master.switch_frame(PaginaHidraOjos)]).grid()
+        botonHidraMucosaNormal= tk.Button(self, image= self.imagenHidraMucosaNormal, command= lambda: (hidraMucosa.Normal(), [master.switch_frame(PaginaHidraOjos)])).grid()
+        botonHidraMucosaSeca= tk.Button(self, image= self.imagenHidraMucosaSeca, command= lambda: (hidraMucosa.Seca(), [master.switch_frame(PaginaHidraOjos)])).grid()
 
 class PaginaHidraOjos(tk.Frame):
     def __init__(self, master):
