@@ -17,6 +17,7 @@ from Mod_Evaluar import Consolabilidad
 from Mod_Evaluar import Ruidos
 from Mod_Evaluar import Dificultad
 from Mod_Evaluar import Posicion
+from Mod_Evaluar import Antecedentes
 
 #Esta seccion sirve para camibiar entre frames durante la ejecucion del programa. 
 class SampleApp(tk.Tk):
@@ -350,9 +351,11 @@ class PaginaAntecedentes(tk.Frame):
 
         self.imagenAntecedentesSi= tk.PhotoImage(file= "Imagenes\Antecedentes\cantecedentesSi.png")
         self.imagenAntecedentesNo= tk.PhotoImage(file= "Imagenes\Antecedentes\cantecedentesNo.png")
+        
+        antecedentes = Antecedentes.Opciones()
 
-        botonAntecedentesSi= tk.Button(self, image= self.imagenAntecedentesSi, command= lambda:[master.switch_frame(PaginaAbuso)]).grid()
-        botonAntecedentesNo= tk.Button(self, image= self.imagenAntecedentesNo, command= lambda:[master.switch_frame(PaginaAbuso)]).grid()
+        botonAntecedentesPresentes= tk.Button(self, image= self.imagenAntecedentesSi, command= lambda: (antecedentes.Presentes(), [master.switch_frame(PaginaAbuso)])).grid()
+        botonAntecedentesNegados= tk.Button(self, image= self.imagenAntecedentesNo, command= lambda: (antecedentes.Negados(), [master.switch_frame(PaginaAbuso)])).grid()
 
 class PaginaAbuso(tk.Frame):
     def __init__(self, master):
