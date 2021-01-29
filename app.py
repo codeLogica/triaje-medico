@@ -5,6 +5,8 @@ from Mod_Evaluar import Conciencia
 from Mod_Evaluar import ColoracionPiel
 from Mod_Evaluar import HidraPiel
 from Mod_Evaluar import HidraMucosa
+from Mod_Evaluar import HidraOjos
+from Mod_Evaluar import HidraPliegue
 
 #Esta seccion sirve para camibiar entre frames durante la ejecucion del programa. 
 class SampleApp(tk.Tk):
@@ -123,6 +125,7 @@ class PaginaHidraMucosa(tk.Frame):
         botonHidraMucosaNormal= tk.Button(self, image= self.imagenHidraMucosaNormal, command= lambda: (hidraMucosa.Normal(), [master.switch_frame(PaginaHidraOjos)])).grid()
         botonHidraMucosaSeca= tk.Button(self, image= self.imagenHidraMucosaSeca, command= lambda: (hidraMucosa.Seca(), [master.switch_frame(PaginaHidraOjos)])).grid()
 
+#Este es el quinto frame con el quinto parametro a evaluar, el estado de la hidratacion segun el estado clinico de los ojos. Sigue el mismo funcionamiento del frame anterior y la misma estructura general.
 class PaginaHidraOjos(tk.Frame):
     def __init__(self, master):
         tk.Frame.__init__(self, master)
@@ -132,10 +135,13 @@ class PaginaHidraOjos(tk.Frame):
 
         self.imagenHidraOjosNormal= tk.PhotoImage(file= "Imagenes\Hidratacion\hidraOjosNormal.png")
         self.imagenHidraOjosHundidos= tk.PhotoImage(file= "Imagenes\Hidratacion\hidraOjosHundidos.png")
+        
+        hidraOjos = HidraOjos.Opciones()
 
-        botonHidraOjosNormal= tk.Button(self, image= self.imagenHidraOjosNormal, command= lambda:[master.switch_frame(PaginaPliegue)]).grid()
-        botonHidraOjosHundidos= tk.Button(self, image= self.imagenHidraOjosHundidos, command= lambda:[master.switch_frame(PaginaPliegue)]).grid()
+        botonHidraOjosNormal= tk.Button(self, image= self.imagenHidraOjosNormal, command= lambda: (hidraOjos.Normal(), [master.switch_frame(PaginaPliegue)])).grid()
+        botonHidraOjosHundidos= tk.Button(self, image= self.imagenHidraOjosHundidos, command= lambda: (hidraOjos.Hundidos(), [master.switch_frame(PaginaPliegue)])).grid()
 
+#Este es el sexto frame con el sexto parametro a evaluar, el estado de la hidratacion segun el signo del pliegue. Sigue el mismo funcionamiento del frame anterior y la misma estructura general.
 class PaginaPliegue(tk.Frame):
     def __init__(self, master):
         tk.Frame.__init__(self, master)
@@ -145,9 +151,11 @@ class PaginaPliegue(tk.Frame):
 
         self.imagenHidraPlieguePositivo= tk.PhotoImage(file= "Imagenes\Hidratacion\hidraPlieguePositivo.png")
         self.imagenHidraPliegueNegativo= tk.PhotoImage(file= "Imagenes\Hidratacion\hidraPliegueNegativo.png")
+        
+        hidraPliegue = HidraPliegue.Opciones()
 
-        botonHidraPlieguePositivo= tk.Button(self, image= self.imagenHidraPlieguePositivo, command= lambda:[master.switch_frame(PaginaHidraVomito)]).grid()
-        botonHidraPliegueNegativo= tk.Button(self, image= self.imagenHidraPliegueNegativo, command= lambda:[master.switch_frame(PaginaHidraVomito)]).grid()
+        botonHidraPlieguePositivo= tk.Button(self, image= self.imagenHidraPlieguePositivo, command= lambda: (hidraPliegue.Positivo(), [master.switch_frame(PaginaHidraVomito)])).grid()
+        botonHidraPliegueNegativo= tk.Button(self, image= self.imagenHidraPliegueNegativo, command= lambda: (hidraPliegue.Negativo(), [master.switch_frame(PaginaHidraVomito)])).grid()
 
 class PaginaHidraVomito(tk.Frame):
     def __init__(self, master):
