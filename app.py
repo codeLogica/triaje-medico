@@ -339,8 +339,7 @@ class PaginaPosicion(tk.Frame):
 
         botonPosicionSi= tk.Button(self, image= self.imagenRespiracionPosicionSi, command= lambda: (posicionPatologica.Si(), [master.switch_frame(PaginaAntecedentes)])).grid()
         botonPosicionNo= tk.Button(self, image= self.imagenRespiracionPosicionNo, command= lambda: (posicionPatologica.No(), [master.switch_frame(PaginaAntecedentes)])).grid()
-        
-        
+               
 #A partir de estos frames los combobox ya no aparecen. 
 class PaginaAntecedentes(tk.Frame):
     def __init__(self, master):
@@ -403,47 +402,42 @@ class PaginaSignosVitales(tk.Frame):
                 else:
                     checks.append(char.isdecimal())
             return all(checks)
-    
+
         tk.Label(self, text= "Frecuencia Cardiaca").grid(row=2, column=1, sticky="e")
         freCardiaca= tk.Entry(self,
                               validate="key",
-                              validatecommand=(self.register(validar_datos), "%P")
-        )
+                              validatecommand=(self.register(validar_datos), "%P"))
         freCardiaca.grid(row=2, column=2)
         
+
         tk.Label(self, text= "Frecuencia Respiratoria").grid(row=3, column=1, sticky="e")
         freRespiratoria= tk.Entry(self,
                                   validate="key",
-                                  validatecommand=(self.register(validar_datos), "%P")
-        )
+                                  validatecommand=(self.register(validar_datos), "%P"))
         freRespiratoria.grid(row=3, column=2)
         
         tk.Label(self, text= "Presion Sistolica").grid(row=4, column=1, sticky="e")
         presionSistolica= tk.Entry(self,
                                    validate="key",
-                                   validatecommand=(self.register(validar_datos), "%P")
-        )
+                                   validatecommand=(self.register(validar_datos), "%P"))
         presionSistolica.grid(row=4, column=2)
         
         tk.Label(self, text= "Presion Diastolica").grid(row=5, column=1, sticky="e")
         presionDiastolica= tk.Entry(self,
                                     validate="key",
-                                    validatecommand=(self.register(validar_datos), "%P")
-        )
+                                    validatecommand=(self.register(validar_datos), "%P"))
         presionDiastolica.grid(row=5, column=2)
         
         tk.Label(self, text= "Temperatura").grid(row=6, column=1, sticky="e")
         temperatura= tk.Entry(self,
                               validate="key",
-                              validatecommand=(self.register(validar_temperatura), "%P")
-        )
+                              validatecommand=(self.register(validar_temperatura), "%P"))
         temperatura.grid(row=6, column=2)
         
         tk.Label(self, text= "Saturacion de oxigeno (satO2)").grid(row=7, column=1, sticky="e")
         saturacionO2= tk.Entry(self,
                                validate="key",
-                               validatecommand=(self.register(validar_datos), "%P")
-        )
+                               validatecommand=(self.register(validar_datos), "%P"))
         saturacionO2.grid(row=7, column=2)
 
 #En esta pagina se dara a conocer el resultado segun la evaluacion de los parametros descritos anteriormente. Tiene que aparecer el frame del color correspondiente a la gravedad de la urgencia medica. 
