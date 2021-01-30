@@ -8,10 +8,10 @@ paramEvaluar = Parametros.Evaluar()
 class Opciones():
     def Mantiene(self):
         paramEvaluar.TEPA(True)
-        paramEvaluar.SAC(+0)
+        paramEvaluar.SAC(0.0)
     def NoMantiene(self):
         paramEvaluar.TEPA(False)
-        paramEvaluar.SAC(+0.333)
+        paramEvaluar.SAC(0.333)
     def NoDirige(self):
         paramEvaluar.TEPA(False)
-        paramEvaluar.SAC(+0.666)
+        paramEvaluar.SAC(0.666)

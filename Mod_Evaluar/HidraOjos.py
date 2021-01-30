@@ -7,6 +7,6 @@ paramEvaluar = Parametros.Evaluar()
 
 class Opciones():
     def Normal(self):
-        paramEvaluar.SAC(+0)
+        paramEvaluar.SAC(0)
     def Hundidos(self):
-        paramEvaluar.SAC(+0.333)
+        paramEvaluar.SAC(0.333)

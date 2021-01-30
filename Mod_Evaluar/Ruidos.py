@@ -12,28 +12,28 @@ class Opciones():
             comboRuidoElegido= comboRuidos.get()
             if comboRuidoElegido== "Gruñido":
                 paramEvaluar.TEPR(False)
-                paramEvaluar.SAT(+3)
-                paramEvaluar.SAC(+0.333)
+                paramEvaluar.SAT(3)
+                paramEvaluar.SAC(0.333)
                 return True
             elif comboRuidoElegido== "Estridor":
                 paramEvaluar.TEPR(False)
-                paramEvaluar.SAT(+3)
-                paramEvaluar.SAC(+0.333)
+                paramEvaluar.SAT(3)
+                paramEvaluar.SAC(0.333)
                 return True
             elif comboRuidoElegido== "Disfonia":
                 paramEvaluar.TEPR(False)
-                paramEvaluar.SAT(+3)
-                paramEvaluar.SAC(+0.333)
+                paramEvaluar.SAT(3)
+                paramEvaluar.SAC(0.333)
                 return True
             elif comboRuidoElegido== "Quejido":
                 paramEvaluar.TEPR(False)
-                paramEvaluar.SAT(+3)
-                paramEvaluar.SAC(+0.333)
+                paramEvaluar.SAT(3)
+                paramEvaluar.SAC(0.333)
                 return True
             elif comboRuidoElegido== "Silibancia":
                 paramEvaluar.TEPR(False)
-                paramEvaluar.SAT(+3)
-                paramEvaluar.SAC(+0.333)
+                paramEvaluar.SAT(3)
+                paramEvaluar.SAC(0.333)
                 return True
 
         comboRuidos= ttk.Combobox(self)
@@ -44,5 +44,5 @@ class Opciones():
                     
     def Ausentes(self):
         paramEvaluar.TEPR(True)
-        paramEvaluar.SAT(+0)
-        paramEvaluar.SAC(+0)
+        paramEvaluar.SAT(0)
+        paramEvaluar.SAC(0.0)

@@ -7,6 +7,6 @@ paramEvaluar = Parametros.Evaluar()
 
 class Opciones():
     def NoTolera(self):
-        paramEvaluar.SAC(+0.333)
+        paramEvaluar.SAC(0.333)
     def SiTolera(self):
-        paramEvaluar.SAC(+0)
+        paramEvaluar.SAC(0.0)

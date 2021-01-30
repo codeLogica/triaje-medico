@@ -8,7 +8,7 @@ paramEvaluar = Parametros.Evaluar()
 class Opciones():
     def Fuerte(self):
         paramEvaluar.TEPA(True)
-        paramEvaluar.SAC(+0)
+        paramEvaluar.SAC(0.0)
     def Debil(self):
         paramEvaluar.TEPA(False)
-        paramEvaluar.SAC(+0.333)
+        paramEvaluar.SAC(0.333)

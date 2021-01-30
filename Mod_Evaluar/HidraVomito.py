@@ -7,6 +7,6 @@ paramEvaluar = Parametros.Evaluar()
 
 class Opciones():
     def Presente(self):
-        paramEvaluar.SAC(+0.333)
+        paramEvaluar.SAC(0.333)
     def Ausente(self):
-        paramEvaluar.SAC(+0)
+        paramEvaluar.SAC(0.0)

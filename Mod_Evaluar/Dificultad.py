@@ -13,20 +13,20 @@ class Opciones():
 
             if comboDificultadElegida== "Tiraje Intercostal":
                 paramEvaluar.TEPR(False)
-                paramEvaluar.SAT(+1)
-                paramEvaluar.SAC(+0.333)
+                paramEvaluar.SAT(1)
+                paramEvaluar.SAC(0.333)
             elif comboDificultadElegida=="Retracciones":
                 paramEvaluar.TEPR(False)
-                paramEvaluar.SAT(+2)
-                paramEvaluar.SAC(+0.666)
+                paramEvaluar.SAT(2)
+                paramEvaluar.SAC(0.666)
             elif comboDificultadElegida=="Aleteo Nasal":
                 paramEvaluar.TEPR(False)
-                paramEvaluar.SAT(+2)
-                paramEvaluar.SAC(+0.666)
+                paramEvaluar.SAT(2)
+                paramEvaluar.SAC(0.666)
             elif comboDificultadElegida=="Dis.Toraco Abdominal":
                 paramEvaluar.TEPR(False)
-                paramEvaluar.SAT(+3)
-                paramEvaluar.SAC(+0.666)
+                paramEvaluar.SAT(3)
+                paramEvaluar.SAC(0.666)
 
         comboDificultad= ttk.Combobox(self)
         comboDificultad['values']= ("Tiraje Intercostal", "Retracciones","Aleteo Nasal","Dis.Toraco Abdominal")
@@ -36,5 +36,5 @@ class Opciones():
         
     def Ausente(self):
         paramEvaluar.TEPR(True)
-        paramEvaluar.SAT(+0)
-        paramEvaluar.SAC(+0)
+        paramEvaluar.SAT(0)
+        paramEvaluar.SAC(0.0)

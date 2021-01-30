@@ -8,6 +8,6 @@ paramEvaluar = Parametros.Evaluar()
 
 class Opciones():
     def Presentes(self):
-        paramEvaluar.SAC(+0.333)
+        paramEvaluar.SAC(0.333)
     def Negados(self):
-        paramEvaluar.SAC(+0)
+        paramEvaluar.SAC(0.0)

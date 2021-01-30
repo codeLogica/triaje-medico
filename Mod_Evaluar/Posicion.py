@@ -26,5 +26,5 @@ class Opciones():
         
     def No(self):
         paramEvaluar.TEPR(True)
-        paramEvaluar.SAT(+0)
-        paramEvaluar.SAC(+0)
+        paramEvaluar.SAT(0)
+        paramEvaluar.SAC(0.0)
