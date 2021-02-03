@@ -1,25 +1,7 @@
 import tkinter as tk
 import tkinter as ttk
 from tkinter import PhotoImage
-from Mod_Evaluar import Conciencia
-from Mod_Evaluar import ColoracionPiel
-from Mod_Evaluar import HidraPiel
-from Mod_Evaluar import HidraMucosa
-from Mod_Evaluar import HidraOjos
-from Mod_Evaluar import HidraPliegue
-from Mod_Evaluar import HidraVomito
-from Mod_Evaluar import HidraTolerancia
-from Mod_Evaluar import Actividad
-from Mod_Evaluar import Tono
-from Mod_Evaluar import Visual
-from Mod_Evaluar import Llanto
-from Mod_Evaluar import Consolabilidad
-from Mod_Evaluar import Ruidos
-from Mod_Evaluar import Dificultad
-from Mod_Evaluar import Posicion
-from Mod_Evaluar import Antecedentes
-from Mod_Evaluar import Abuso
-from Mod_Evaluar import SignosVitales
+from Mod_Eva import Modulo
 
 #Esta seccion sirve para camibiar entre frames durante la ejecucion del programa. 
 class SampleApp(tk.Tk):
@@ -74,7 +56,7 @@ class PaginaConciencia(tk.Frame):
         self.imagenNoDuerme= tk.PhotoImage(file= "Imagenes/Conciencia/concienciaNo.png")
         self.imagenCrisis= tk.PhotoImage(file= "Imagenes/Conciencia/concienciaCrisis.png")
         
-        conciencia = Conciencia.Opciones()
+        conciencia = Modulo.ConcienciaOpcion()
 
         botonDespierto= tk.Button(self, image= self.imagenDespierto, command= lambda:(conciencia.Despierto(), [master.switch_frame(PaginaColorPiel)])).grid()
         botonSomnoliento= tk.Button(self, image= self.imagenSomnoliento, command= lambda:(conciencia.Somnoliento(), [master.switch_frame(PaginaColorPiel)])).grid()
@@ -97,7 +79,7 @@ class PaginaColorPiel(tk.Frame):
         self.imagenPielMarmorea= tk.PhotoImage(file= "Imagenes/Piel/pielMarmorea.png")
         self.imagenPielPurpurica= tk.PhotoImage(file= "Imagenes/Piel/pielPurpurica.png")
         
-        coloracionPiel = ColoracionPiel.Opciones()
+        coloracionPiel = Modulo.ColorPielOpcion()
 
         botonRosada= tk.Button(self, image= self.imagenPielRosada, command= lambda:(coloracionPiel.Rosada(), [master.switch_frame(PaginaHidraPiel)])).grid()
         botonPalida= tk.Button(self, image= self.imagenPielPalida,command= lambda:(coloracionPiel.Palida(), [master.switch_frame(PaginaHidraPiel)])).grid()
@@ -117,7 +99,7 @@ class PaginaHidraPiel(tk.Frame):
         self.imagenHidraPielNormal= tk.PhotoImage(file= "Imagenes\Hidratacion\hidraPielNormal.png")
         self.imagenHidraPielSeca= tk.PhotoImage(file= "Imagenes\Hidratacion\hidraPielSeca.png")
         
-        hidraPiel = HidraPiel.Opciones()
+        hidraPiel = Modulo.HidratacionPielOpcion()
 
         botonHidraPielNormal= tk.Button(self, image= self.imagenHidraPielNormal,command= lambda: (hidraPiel.Normal, [master.switch_frame(PaginaHidraMucosa)])).grid()
         botonHidraPielSeca= tk.Button(self, image= self.imagenHidraPielSeca, command= lambda: (hidraPiel.Seca, [master.switch_frame(PaginaHidraMucosa)])).grid()
@@ -133,7 +115,7 @@ class PaginaHidraMucosa(tk.Frame):
         self.imagenHidraMucosaNormal= tk.PhotoImage(file= "Imagenes\Hidratacion\hidraMucosaNormal.png")
         self.imagenHidraMucosaSeca= tk.PhotoImage(file= "Imagenes\Hidratacion\hidraMucosaSeca.png")
         
-        hidraMucosa = HidraMucosa.Opciones()
+        hidraMucosa = Modulo.HidratacionMucosasOpcion()
 
         botonHidraMucosaNormal= tk.Button(self, image= self.imagenHidraMucosaNormal, command= lambda: (hidraMucosa.Normal(), [master.switch_frame(PaginaHidraOjos)])).grid()
         botonHidraMucosaSeca= tk.Button(self, image= self.imagenHidraMucosaSeca, command= lambda: (hidraMucosa.Seca(), [master.switch_frame(PaginaHidraOjos)])).grid()
@@ -149,7 +131,7 @@ class PaginaHidraOjos(tk.Frame):
         self.imagenHidraOjosNormal= tk.PhotoImage(file= "Imagenes\Hidratacion\hidraOjosNormal.png")
         self.imagenHidraOjosHundidos= tk.PhotoImage(file= "Imagenes\Hidratacion\hidraOjosHundidos.png")
         
-        hidraOjos = HidraOjos.Opciones()
+        hidraOjos = Modulo.HidratacionOjosOpcion()
 
         botonHidraOjosNormal= tk.Button(self, image= self.imagenHidraOjosNormal, command= lambda: (hidraOjos.Normal(), [master.switch_frame(PaginaPliegue)])).grid()
         botonHidraOjosHundidos= tk.Button(self, image= self.imagenHidraOjosHundidos, command= lambda: (hidraOjos.Hundidos(), [master.switch_frame(PaginaPliegue)])).grid()
@@ -165,7 +147,7 @@ class PaginaPliegue(tk.Frame):
         self.imagenHidraPlieguePositivo= tk.PhotoImage(file= "Imagenes\Hidratacion\hidraPlieguePositivo.png")
         self.imagenHidraPliegueNegativo= tk.PhotoImage(file= "Imagenes\Hidratacion\hidraPliegueNegativo.png")
         
-        hidraPliegue = HidraPliegue.Opciones()
+        hidraPliegue = Modulo.HidratacionPliegueOpcion()
 
         botonHidraPlieguePositivo= tk.Button(self, image= self.imagenHidraPlieguePositivo, command= lambda: (hidraPliegue.Positivo(), [master.switch_frame(PaginaHidraVomito)])).grid()
         botonHidraPliegueNegativo= tk.Button(self, image= self.imagenHidraPliegueNegativo, command= lambda: (hidraPliegue.Negativo(), [master.switch_frame(PaginaHidraVomito)])).grid()
@@ -181,7 +163,7 @@ class PaginaHidraVomito(tk.Frame):
         self.imagenHidraVomitoPresente= tk.PhotoImage(file= "Imagenes\Hidratacion\hidraVomitoPresente.png")
         self.imagenHidraVomitoAusente= tk.PhotoImage(file= "Imagenes\Hidratacion\hidraVomitoAusente.png")
         
-        hidraVomito = HidraVomito.Opciones()
+        hidraVomito = Modulo.HidratacionVomitoOpcion()
 
         botonHidraVomitoPresente= tk.Button(self, image= self.imagenHidraVomitoPresente, command= lambda: (hidraVomito.Presente(), [master.switch_frame(PaginaHidraTolerancia)])).grid()
         botonHidraVomitoAusente= tk.Button(self, image= self.imagenHidraVomitoAusente, command= lambda: (hidraVomito.Ausente(), [master.switch_frame(PaginaHidraTolerancia)])).grid()
@@ -197,7 +179,7 @@ class PaginaHidraTolerancia(tk.Frame):
         self.imagenHidraToleranciaSi= tk.PhotoImage(file= "Imagenes\Hidratacion\hidraToleranciaSi.png")
         self.imagenHidraToleranciaNo= tk.PhotoImage(file= "Imagenes\Hidratacion\hidraToleranciaNo.png")
         
-        tolerancia = HidraTolerancia.Opciones()
+        tolerancia = Modulo.HidratacionToleranciaOpcion()
 
         botonHidraToleranciaSi= tk.Button(self, image= self.imagenHidraToleranciaSi, command= lambda: (tolerancia.SiTolera(), [master.switch_frame(PaginaActividad)])).grid()
         botonHidraToleranciaNo= tk.Button(self, image= self.imagenHidraToleranciaNo, command= lambda: (tolerancia.NoTolera(), [master.switch_frame(PaginaActividad)])).grid()
@@ -215,7 +197,7 @@ class PaginaActividad(tk.Frame):
         self.imagenLetargico= tk.PhotoImage(file= "Imagenes\Actividad\cactividadLetargico.png")
         self.imagenInconsciente= tk.PhotoImage(file= "Imagenes\Actividad\cactividadInconsciente.png")
         
-        actividad = Actividad.Opciones()
+        actividad = Modulo.ActividadOpcion()
 
         botonJuega= tk.Button(self, image= self.imagenJuega, command= lambda: (actividad.Juega(), [master.switch_frame(PaginaTono)])).grid()
         botonConfundido= tk.Button(self, image= self.imagenConfundido, command= lambda: (actividad.Confundido(), [master.switch_frame(PaginaTono)])).grid()
@@ -233,7 +215,7 @@ class PaginaTono(tk.Frame):
         self.imagenEutonico= tk.PhotoImage(file= "Imagenes\Tono\ctonoEutonico.png")
         self.imagenHipotonico= tk.PhotoImage(file= "Imagenes\Tono\ctonoHipotonico.png")
         
-        tono = Tono.Opciones()
+        tono = Modulo.TonoOpcion()
 
         botonEutonico= tk.Button(self, image= self.imagenEutonico,command= lambda: (tono.Eutonico(), [master.switch_frame(PaginaVisual)])).grid()
         botonHipotonico= tk.Button(self, image= self.imagenHipotonico,command= lambda: (tono.Hipotonico(),[master.switch_frame(PaginaVisual)])).grid()
@@ -250,7 +232,7 @@ class PaginaVisual(tk.Frame):
         self.imagenNoMantiene= tk.PhotoImage(file= "Imagenes\Visual\cvisualNoMantiene.png")
         self.imagenNoDirige= tk.PhotoImage(file= "Imagenes\Visual\cvisualNoDirige.png")
         
-        mirada = Visual.Opciones()
+        mirada = Modulo.VisualOpcion()
 
         botonMantiene= tk.Button(self, image= self.imagenMantiene,command= lambda: (mirada.Mantiene(), [master.switch_frame(PaginaLlanto)])).grid()
         botonNoMantiene= tk.Button(self, image= self.imagenNoMantiene,command= lambda: (mirada.NoMantiene(), [master.switch_frame(PaginaLlanto)])).grid()
@@ -267,7 +249,7 @@ class PaginaLlanto(tk.Frame):
         self.imagenLlantoFuerte= tk.PhotoImage(file= "Imagenes\Llanto\llantoFuerte.png")
         self.imagenLlantoDebil= tk.PhotoImage(file= "Imagenes\Llanto\llantoDebil.png")
         
-        llanto = Llanto.Opciones()
+        llanto = Modulo.LlantoOpcion()
 
         botonLlantoFuerte= tk.Button(self, image= self.imagenLlantoFuerte,command= lambda: (llanto.Fuerte(), [master.switch_frame(PaginaConsolabilidad)])).grid()
         botonLlantoDebil= tk.Button(self, image= self.imagenLlantoDebil,command= lambda: (llanto.Debil(), [master.switch_frame(PaginaConsolabilidad)])).grid()
@@ -283,7 +265,7 @@ class PaginaConsolabilidad(tk.Frame):
         self.imagenLlantoConsolable= tk.PhotoImage(file= "Imagenes\Llanto\llantoConsolable.png")
         self.imagenLlantoInconsolable= tk.PhotoImage(file= "Imagenes\Llanto\llantoInconsolable.png")
         
-        es = Consolabilidad.Opciones()
+        es = Modulo.ConsolableOpcion()
 
         botonConsolabilidad= tk.Button(self, image= self.imagenLlantoConsolable, command= lambda: (es.Consolable(), [master.switch_frame(PaginaRuidos)])).grid()
         botonInconsolabilidad= tk.Button(self, image= self.imagenLlantoInconsolable, command= lambda: (es.Inconsolable(), [master.switch_frame(PaginaRuidos)])).grid()
@@ -303,7 +285,7 @@ class PaginaRuidos(tk.Frame):
         self.imagenRespiracionRuidosSi= tk.PhotoImage(file= "Imagenes\Respiracion\cruidosSi.png")
         self.imagenRespiracionRuidosNo= tk.PhotoImage(file= "Imagenes\Respiracion\cruidosNo.png")
         
-        ruidos = Ruidos.Opciones()
+        ruidos = Modulo.RuidoRespiratorioOpcion()
 
         botonRuidosPresentes= tk.Button(self, image= self.imagenRespiracionRuidosSi, command= lambda: (ruidos.Presentes(), [master.switch_frame(PaginaDificultad)])).grid()
         botonRuidosAusentes= tk.Button(self, image= self.imagenRespiracionRuidosNo, command= lambda: (ruidos.Ausentes(), [master.switch_frame(PaginaDificultad)])).grid()
@@ -320,7 +302,7 @@ class PaginaDificultad(tk.Frame):
         self.imagenRespiracionDificultadSi= tk.PhotoImage(file= "Imagenes\Respiracion\dificultadSi.png")
         self.imagenRespiracionDificultadNo= tk.PhotoImage(file= "Imagenes\Respiracion\dificultadNo.png")
         
-        dificultadResp = Dificultad.Opciones()
+        dificultadResp = Modulo.DificultadRespiratoriaOpcion()
 
         botonDificultadPresente= tk.Button(self, image= self.imagenRespiracionDificultadSi, command= lambda: (dificultadResp.Presente(),  [master.switch_frame(PaginaPosicion)])).grid()
         botonDificultadAusente= tk.Button(self, image= self.imagenRespiracionDificultadNo, command= lambda: (dificultadResp.Ausente(), [master.switch_frame(PaginaPosicion)])).grid()
@@ -335,7 +317,7 @@ class PaginaPosicion(tk.Frame):
         self.imagenRespiracionPosicionSi= tk.PhotoImage(file= "Imagenes\Respiracion\posicionSi.png")
         self.imagenRespiracionPosicionNo= tk.PhotoImage(file= "Imagenes\Respiracion\posicionNo.png")
         
-        posicionPatologica = Posicion.Opciones()
+        posicionPatologica = Modulo.PosicionPatologicaOpcion()
 
         botonPosicionSi= tk.Button(self, image= self.imagenRespiracionPosicionSi, command= lambda: (posicionPatologica.Si(), [master.switch_frame(PaginaAntecedentes)])).grid()
         botonPosicionNo= tk.Button(self, image= self.imagenRespiracionPosicionNo, command= lambda: (posicionPatologica.No(), [master.switch_frame(PaginaAntecedentes)])).grid()
@@ -353,7 +335,7 @@ class PaginaAntecedentes(tk.Frame):
         self.imagenAntecedentesSi= tk.PhotoImage(file= "Imagenes\Antecedentes\cantecedentesSi.png")
         self.imagenAntecedentesNo= tk.PhotoImage(file= "Imagenes\Antecedentes\cantecedentesNo.png")
         
-        antecedentes = Antecedentes.Opciones()
+        antecedentes = Modulo.AntecedentesOpcion()
 
         botonAntecedentesPresentes= tk.Button(self, image= self.imagenAntecedentesSi, command= lambda: (antecedentes.Presentes(), [master.switch_frame(PaginaAbuso)])).grid()
         botonAntecedentesNegados= tk.Button(self, image= self.imagenAntecedentesNo, command= lambda: (antecedentes.Negados(), [master.switch_frame(PaginaAbuso)])).grid()
@@ -368,7 +350,7 @@ class PaginaAbuso(tk.Frame):
         self.imagenAbusoSi= tk.PhotoImage(file= "Imagenes\Antecedentes\cabusoSi.png")
         self.imagenAbusoNo= tk.PhotoImage(file= "Imagenes\Antecedentes\cabusoNo.png")
         
-        abuso = Abuso.Opciones()
+        abuso = Modulo.AbusoOpcion()
 
         botonAbusoPresente= tk.Button(self, image= self.imagenAbusoSi, command= lambda: (abuso.Presente(), [master.switch_frame(PaginaSignosVitales)])).grid()
         botonAbusoAusente= tk.Button(self, image= self.imagenAbusoNo, command= lambda: (abuso.Ausente(), [master.switch_frame(PaginaSignosVitales)])).grid()
@@ -430,7 +412,7 @@ class PaginaSignosVitales(tk.Frame):
         
         tk.Label(self, text= "Temperatura").grid(row=6, column=1, sticky="e")
         temperatura= tk.Entry(self,
-                              validate="key",
+                               validate="key",
                               validatecommand=(self.register(validar_temperatura), "%P"))
         temperatura.grid(row=6, column=2)
         
