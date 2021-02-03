@@ -1,4 +1,4 @@
-# Se reciben los valores parasados como argumentos y realiza la suma.         
+# Se reciben los valores parasados como argumentos y realiza la suma que dara como resultado un codigo de color. 
 class Evaluar():       
     def __init__(self):
         self.valorInicialTEPA= True
@@ -7,6 +7,9 @@ class Evaluar():
         self.valorInicialSAT= 0
         self.valorInicialSAC= 0
         
+        self.valorFinalTEPA= None
+        self.valorFinalTEPR= None
+        self.valorFinalTEPC= None
         self.valorFinalSAT= 0
         self.valorFinalSAc= 0
         
@@ -18,21 +21,27 @@ class Evaluar():
         
     def TEPA(self, valorAnadidoTEPA):
         if  self.valorInicialTEPA != valorAnadidoTEPA:
-            self.valorAnadidoTEPA = valorAnadidoTEPA
-        print(f"Soy el valor del Triangulo Evaluacion Pediatrica Apariencia {self.valorAnadidoTEPA}")
-        return self.valorAnadidoTEPA
+            self.valorFinalTEPA = valorAnadidoTEPA
+        else:
+            self.valorFinalTEPA= self.valorInicialTEPA
+        print(f"Soy el valor del Triangulo Evaluacion Pediatrica Apariencia {self.valorFinalTEPA}")
+        return self.valorFinalTEPA
     
     def TEPR(self, valorAnadidoTEPR):
         if  self.valorInicialTEPR != valorAnadidoTEPR:
-            self.valorAnadidoTEPR = valorAnadidoTEPR
-        print(f"Soy el valor del Triangulo Evaluacion Pediatrica Respiracion {self.valorAnadidoTEPR}")
-        return self.valorAnadidoTEPR
+            self.valorFinalTEPR = valorAnadidoTEPR
+        else:
+            self.valorFinalTEPR= self.valorInicialTEPR
+        print(f"Soy el valor del Triangulo Evaluacion Pediatrica Respiracion {self.valorFinalTEPR}")
+        return self.valorFinalTEPR
     
     def TEPC(self, valorAnadidoTEPC):
         if  self.valorInicialTEPC == valorAnadidoTEPC:
-            self.valorAnadidoTEPC = valorAnadidoTEPC
-        print(f"Soy el valor del Triangulo Evaluacion Pediatrica Circulacion {self.valorAnadidoTEPC}")
-        return self.valorAnadidoTEPC
+            self.valorFinalTEPC = valorAnadidoTEPC
+        else:
+            self.valorFinalTEPC= self.valorInicialTEPC
+        print(f"Soy el valor del Triangulo Evaluacion Pediatrica Circulacion {self.valorFinalTEPC}")
+        return self.valorFinalTEPC
     
     def SAT(self, valorAnadidoSAT):
         self.valorAnadidoSAT = valorAnadidoSAT
@@ -60,9 +69,3 @@ class Evaluar():
             return self.valorFinalSAC
             
     
-##    self.codigoAzul = 0
-##    self.codigoVerde = 0
-##    self.codigoAmarillo = 0
-##    self.codigoNaranja = 0
-##    self.codigoRojo = 0
-##    codigos= 0
