@@ -1,9 +1,10 @@
-import tkinter as tk
+#Se importa el modulo a los que se asignara los valores, pasandolos como argumentos.
 from Mod_Eva import Parametros
 
 #Se hace la llamda al modulo de parametros a evaluar. 
 paramEvaluar = Parametros.Evaluar()
 
+#Cada metodo de las clases esta asignado a un boton en el GUI, estos pasan al modulo Parametros un valor como argumento. Algunos metodos pasan los mismos valores, estos es porque en la practica puede que la presentacion de los sintomas sea distinta pero igual de beninga o maligna, dependiendo. 
 class ConcienciaOpcion():    
     def Despierto(self):
         paramEvaluar.TEPA(True)
