@@ -2,6 +2,7 @@ import tkinter as tk
 import tkinter as ttk
 from tkinter import PhotoImage
 from Mod_Eva import Modulo
+from Mod_Eva import Resultado
 
 #Esta seccion sirve para camibiar entre frames durante la ejecucion del programa. 
 class SampleApp(tk.Tk):
@@ -352,8 +353,8 @@ class PaginaAbuso(tk.Frame):
         
         abuso = Modulo.AbusoOpcion()
 
-        botonAbusoPresente= tk.Button(self, image= self.imagenAbusoSi, command= lambda: (abuso.Presente(), [master.switch_frame(PaginaSignosVitales)])).grid()
-        botonAbusoAusente= tk.Button(self, image= self.imagenAbusoNo, command= lambda: (abuso.Ausente(), [master.switch_frame(PaginaSignosVitales)])).grid()
+        botonAbusoPresente= tk.Button(self, image= self.imagenAbusoSi, command= lambda: (abuso.Presente(), [master.switch_frame(PaginaResultado)])).grid()
+        botonAbusoAusente= tk.Button(self, image= self.imagenAbusoNo, command= lambda: (abuso.Ausente(), [master.switch_frame(PaginaResultado)])).grid()
 
 class PaginaSignosVitales(tk.Frame):
     def __init__(self, master):
@@ -426,6 +427,25 @@ class PaginaSignosVitales(tk.Frame):
 class PaginaResultado(tk.Frame):
     def __init__(self, master):
         tk.Frame.__init__(self, master)
+        
+        resultado= Resultado.CodigoColor.__init__(self)
+        
+        if resultado.codigoRojo>=resultado.codigoNaranja or resultado.codigoRojo>=resultado.codigoAmarillo or resultado.codigoRojo>=resultado.codigoVerde or resultado.codigoRojo>=resultado.codigoAzul and resultado.codigoRojo>=1:
+            miLabel= tk.Label(self, text= "CODIGO ROJO", bg= "red")
+            miLabel.grid()
+        elif resultado.codigoNaranja>=resultado.codigoAmarillo or resultado.codigoNaranja>=resultado.codigoVerde or resultado.codigoNaranja>=resultado.codigoAzul and resultado.codigoNaranja>=1:
+            miLabel= tk.Label(self, text= "CODIGO NARANJA", bg= "orange")
+            miLabel.grid()
+        elif resultado.codigoAmarillo>=resultado.codigoVerde or resultado.codigoAmarillo>=resultado.codigoAzul and resultado.codigoAmarillo>=1:
+            miLabel= tk.Label(self, text= "CODIGO AMARILLO", bg= "yellow")
+            miLabel.grid()
+        elif resultado.codigoVerde>=resultado.codigoAzul and resultado.codigoVerde>=1:
+            miLabel= tk.Label(self, text= "CODIGO VERDE", bg= "green")
+            miLabel.grid()
+        elif resultado.codigoAzul>resultado.codigoRojo and resultado.codigoAzul>=1:
+            miLabel= tk.Label(self, text= "CODIGO AZUL", bg= "blue")
+            miLabel.grid()
+
 
 if __name__ == "__main__":
     app = SampleApp()
