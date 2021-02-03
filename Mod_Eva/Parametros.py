@@ -1,3 +1,6 @@
+from Mod_Eva import Resultado
+
+resultado = Resultado.CodigoColor()
 # Se reciben los valores parasados como argumentos y realiza la suma que dara como resultado un codigo de color. 
 class Evaluar():       
     def __init__(self):
@@ -11,13 +14,22 @@ class Evaluar():
         self.valorFinalTEPR= None
         self.valorFinalTEPC= None
         self.valorFinalSAT= 0
-        self.valorFinalSAc= 0
+        self.valorFinalSAC= 0
         
         self.valorAnadidoTEPA= 0
         self.valorAnadidoTEPR= 0
         self.valorAnadidoTEPC= 0
         self.valorAnadidoSAT= 0
         self.valorAnadidoSAC= 0
+        
+        resultado.TrianguloEvaluacionPediatrica(self.valorFinalTEPA, 
+                                                self.valorFinalTEPC, 
+                                                self.valorFinalTEPR)
+        
+        resultado.SistemaAlertaTemprana(self.valorFinalSAT)
+        
+        resultado.SaveChild(self.valorFinalSAC)
+
         
     def TEPA(self, valorAnadidoTEPA):
         if  self.valorInicialTEPA != valorAnadidoTEPA:
