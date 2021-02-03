@@ -428,7 +428,13 @@ class PaginaResultado(tk.Frame):
     def __init__(self, master):
         tk.Frame.__init__(self, master)
         
-        resultado= Resultado.CodigoColor.__init__(self)
+        resultado= Resultado.CodigoColor()
+        
+        print(resultado.codigoAzul)
+        print(resultado.codigoVerde)
+        print(resultado.codigoAmarillo)
+        print(resultado.codigoNaranja)
+        print(resultado.codigoRojo)
         
         if resultado.codigoRojo>=resultado.codigoNaranja or resultado.codigoRojo>=resultado.codigoAmarillo or resultado.codigoRojo>=resultado.codigoVerde or resultado.codigoRojo>=resultado.codigoAzul and resultado.codigoRojo>=1:
             miLabel= tk.Label(self, text= "CODIGO ROJO", bg= "red")
