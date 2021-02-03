@@ -1,7 +1,10 @@
+#Se importa el modulo a los que se asignara los valores, pasandolos como argumentos.
 from Mod_Eva import Resultado
 
+#Se crea una instancia de clase para la asignacion del color. 
 resultado = Resultado.CodigoColor()
-# Se reciben los valores parasados como argumentos y realiza la suma que dara como resultado un codigo de color. 
+
+# Se reciben los valores pasados como argumentos y realiza la suma que dara como resultado un codigo de color. 
 class Evaluar():       
     def __init__(self):
         self.valorInicialTEPA= True
@@ -21,15 +24,6 @@ class Evaluar():
         self.valorAnadidoTEPC= 0
         self.valorAnadidoSAT= 0
         self.valorAnadidoSAC= 0
-        
-        resultado.TrianguloEvaluacionPediatrica(self.valorFinalTEPA, 
-                                                self.valorFinalTEPC, 
-                                                self.valorFinalTEPR)
-        
-        resultado.SistemaAlertaTemprana(self.valorFinalSAT)
-        
-        resultado.SaveChild(self.valorFinalSAC)
-
         
     def TEPA(self, valorAnadidoTEPA):
         if  self.valorInicialTEPA != valorAnadidoTEPA:
@@ -79,5 +73,12 @@ class Evaluar():
             self.valorFinalSAC += self.valorAnadidoSAC
             print(f"Soy el valor de Save a Child {self.valorFinalSAC}")
             return self.valorFinalSAC
-            
+          
+  
+    resultado.TrianguloEvaluacionPediatrica(self.valorFinalTEPA, 
+                                            self.valorFinalTEPC, 
+                                            self.valorFinalTEPR)
     
+    resultado.SistemaAlertaTemprana(self.valorFinalSAT)
+        
+    resultado.SaveChild(self.valorFinalSAC) 
