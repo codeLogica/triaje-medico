@@ -30,7 +30,7 @@ class Evaluar():
             self.valorFinalTEPA = valorAnadidoTEPA
         else:
             self.valorFinalTEPA= self.valorInicialTEPA
-        print(f"Soy el valor del Triangulo Evaluacion Pediatrica Apariencia {self.valorFinalTEPA}")
+        resultado.TrianguloEvaluacionPediatricaApariencia(self.valorFinalTEPA)
         return self.valorFinalTEPA
     
     def TEPR(self, valorAnadidoTEPR):
@@ -38,7 +38,7 @@ class Evaluar():
             self.valorFinalTEPR = valorAnadidoTEPR
         else:
             self.valorFinalTEPR= self.valorInicialTEPR
-        print(f"Soy el valor del Triangulo Evaluacion Pediatrica Respiracion {self.valorFinalTEPR}")
+        resultado.TrianguloEvaluacionPediatricaRespiracion(self.valorFinalTEPR)
         return self.valorFinalTEPR
     
     def TEPC(self, valorAnadidoTEPC):
@@ -46,7 +46,7 @@ class Evaluar():
             self.valorFinalTEPC = valorAnadidoTEPC
         else:
             self.valorFinalTEPC= self.valorInicialTEPC
-        print(f"Soy el valor del Triangulo Evaluacion Pediatrica Circulacion {self.valorFinalTEPC}")
+        resultado.TrianguloEvaluacionPediatricaCirculacion(self.valorFinalTEPC)
         return self.valorFinalTEPC
     
     def SAT(self, valorAnadidoSAT):
@@ -54,11 +54,11 @@ class Evaluar():
         if self.valorInicialSAT == 0:
             self.valorFinalSAT= self.valorInicialSAT + self.valorAnadidoSAT
             self.valorInicialSAT=+ 1
-            print(f"Soy el valor del Sistema Alerta Temprana {self.valorFinalSAT}")
+            resultado.SistemaAlertaTemprana(self.valorFinalSAT)
             return self.valorFinalSAT
         else:
             self.valorFinalSAT += self.valorAnadidoSAT
-            print(f"Soy el valor del Sistema Alerta Temprana {self.valorFinalSAT}")
+            resultado.SistemaAlertaTemprana(self.valorFinalSAT)
             return self.valorFinalSAT
             
     def SAC(self, valorAnadidoSAC):
@@ -67,18 +67,11 @@ class Evaluar():
         if self.valorInicialSAC == 0:
             self.valorFinalSAC= self.valorInicialSAC + self.valorAnadidoSAC
             self.valorInicialSAC=+ 1
-            print(f"Soy el valor de Save a Child {self.valorFinalSAC}")
+            resultado.SaveChild(self.valorFinalSAC) 
             return self.valorFinalSAC
         else:
             self.valorFinalSAC += self.valorAnadidoSAC
-            print(f"Soy el valor de Save a Child {self.valorFinalSAC}")
+            resultado.SaveChild(self.valorFinalSAC) 
             return self.valorFinalSAC
           
-  
-    resultado.TrianguloEvaluacionPediatrica(self.valorFinalTEPA, 
-                                            self.valorFinalTEPC, 
-                                            self.valorFinalTEPR)
-    
-    resultado.SistemaAlertaTemprana(self.valorFinalSAT)
-        
-    resultado.SaveChild(self.valorFinalSAC) 
+
