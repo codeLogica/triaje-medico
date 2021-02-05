@@ -430,29 +430,28 @@ class PaginaResultado(tk.Frame):
         
         resultado= Resultado.CodigoColor()
         
+        if resultado.codigoRojo != 0 and resultado.codigoRojo>=resultado.codigoNaranja or resultado.codigoRojo>=resultado.codigoAmarillo or resultado.codigoRojo>=resultado.codigoVerde or resultado.codigoRojo>=resultado.codigoAzul and resultado.codigoRojo>=1:
+            miLabel= tk.Label(self, text= "CODIGO ROJO", bg= "red")
+            miLabel.grid()
+        elif resultado.codigoNaranja != 0 and resultado.codigoNaranja>=resultado.codigoAmarillo or resultado.codigoNaranja>=resultado.codigoVerde or resultado.codigoNaranja>=resultado.codigoAzul and resultado.codigoNaranja>=1:
+            miLabel= tk.Label(self, text= "CODIGO NARANJA", bg= "orange")
+            miLabel.grid()
+        elif resultado.codigoAmarillo != 0 and resultado.codigoAmarillo>=resultado.codigoVerde or resultado.codigoAmarillo>=resultado.codigoAzul and resultado.codigoAmarillo>=1:
+            miLabel= tk.Label(self, text= "CODIGO AMARILLO", bg= "yellow")
+            miLabel.grid()
+        elif resultado.codigoVerde != 0 and resultado.codigoVerde>=resultado.codigoAzul and resultado.codigoVerde>=1:
+            miLabel= tk.Label(self, text= "CODIGO VERDE", bg= "green")
+            miLabel.grid()
+        elif resultado.codigoAzul != 0 and resultado.codigoAzul>resultado.codigoRojo and resultado.codigoAzul>=1:
+            miLabel= tk.Label(self, text= "CODIGO AZUL", bg= "blue")
+            miLabel.grid()
+
         print(resultado.codigoAzul)
         print(resultado.codigoVerde)
         print(resultado.codigoAmarillo)
         print(resultado.codigoNaranja)
         print(resultado.codigoRojo)
         
-        if resultado.codigoRojo>=resultado.codigoNaranja or resultado.codigoRojo>=resultado.codigoAmarillo or resultado.codigoRojo>=resultado.codigoVerde or resultado.codigoRojo>=resultado.codigoAzul and resultado.codigoRojo>=1:
-            miLabel= tk.Label(self, text= "CODIGO ROJO", bg= "red")
-            miLabel.grid()
-        elif resultado.codigoNaranja>=resultado.codigoAmarillo or resultado.codigoNaranja>=resultado.codigoVerde or resultado.codigoNaranja>=resultado.codigoAzul and resultado.codigoNaranja>=1:
-            miLabel= tk.Label(self, text= "CODIGO NARANJA", bg= "orange")
-            miLabel.grid()
-        elif resultado.codigoAmarillo>=resultado.codigoVerde or resultado.codigoAmarillo>=resultado.codigoAzul and resultado.codigoAmarillo>=1:
-            miLabel= tk.Label(self, text= "CODIGO AMARILLO", bg= "yellow")
-            miLabel.grid()
-        elif resultado.codigoVerde>=resultado.codigoAzul and resultado.codigoVerde>=1:
-            miLabel= tk.Label(self, text= "CODIGO VERDE", bg= "green")
-            miLabel.grid()
-        elif resultado.codigoAzul>resultado.codigoRojo and resultado.codigoAzul>=1:
-            miLabel= tk.Label(self, text= "CODIGO AZUL", bg= "blue")
-            miLabel.grid()
-
-
 if __name__ == "__main__":
     app = SampleApp()
     app.mainloop()
