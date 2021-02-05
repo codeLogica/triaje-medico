@@ -1,3 +1,5 @@
+import tkinter as tk
+from tkinter import ttk
 #Se importa el modulo a los que se asignara los valores, pasandolos como argumentos.
 from Mod_Eva import Parametros
 
@@ -238,7 +240,7 @@ class PosicionPatologicaOpcion():
         paramEvaluar.TEPR(True)
         paramEvaluar.SAT(0)
         paramEvaluar.SAC(0.0)
-   
+        
 class AntecedentesOpcion():
     def Presentes(self):
         paramEvaluar.SAC(0.333)
