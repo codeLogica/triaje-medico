@@ -6,59 +6,89 @@ class CodigoColor():
         self.codigoVerde= 0
         self.codigoAzul= 0
     
-    def TrianguloEvaluacionPediatrica(self, TEPA, TEPC, TEPR):
+    def TrianguloEvaluacionPediatricaApariencia(self, TEPA):
         self.valorFinalTEPA= TEPA
+        self.validarValores()
+        return self.valorFinalTEPA
+    def TrianguloEvaluacionPediatricaCirculacion(self, TEPC):
         self.valorFinalTEPC= TEPC
+        self.validarValores()
+        return self.valorFinalTEPC
+    def TrianguloEvaluacionPediatricaRespiracion(self, TEPR):
         self.valorFinalTEPR= TEPR
-        
+        self.validarValores()
+        return self.valorFinalTEPR
+    
+    def validarValores(self):
+        if self.valorFinalTEPA != None and self.valorFinalTEPC != None and self.valorFinalTEPR != None:
+            self.TrianguloEvaluacionPediatrica()
+        else:
+            pass
+            
+    def TrianguloEvaluacionPediatrica(self):
         if self.valorFinalTEPA== True and self.valorFinalTEPC== True and self.valorFinalTEPR== True:
             self.codigoAzul=+ 1
-            print(self.codigoAzul)
+            print(f"Soy el valor del codigo AZUL TEP:{self.codigoAzul}")
         elif self.valorFinalTEPA== False and self.valorFinalTEPC== True and self.valorFinalTEPR== True:
             self.codigoRojo=+ 1
-            print(self.codigoRojo)
+            print(f"Soy el valor del codigo ROJO TEP:{self.codigoRojo}")
         elif self.valorFinalTEPA== True and self.valorFinalTEPC== True and self.valorFinalTEPR== False:
             self.codigoNaranja=+ 1
-            print(self.codigoNaranja)
+            print(f"Soy el valor del codigo NARANJA TEP:{self.codigoNaranja}")
         elif self.valorFinalTEPA== False and self.valorFinalTEPC== True and self.valorFinalTEPR== False:
             self.codigoRojo=+ 1
-            print(self.codigoRojo)
+            print(f"Soy el valor del codigo ROJO TEP:{self.codigoRojo}")
         elif self.valorFinalTEPA== True and self.valorFinalTEPC== False and self.valorFinalTEPR== True:
             self.codigoNaranja=+ 1
-            print(self.codigoNaranja)
+            print(f"Soy el valor del codigo NARANJA TEP:{self.codigoNaranja}")
         elif self.valorFinalTEPA== False and self.valorFinalTEPC== False and self.valorFinalTEPR== True:
             self.codigoRojo=+ 1
-            print(self.codigoRojo)
+            print(f"Soy el valor del codigo ROJO TEP:{self.codigoRojo}")
         elif self.valorFinalTEPA== False and self.valorFinalTEPC== False and self.valorFinalTEPR== False:
             self.codigoRojo=+ 1
-            print(self.codigoRojo)
+            print(f"Soy el valor del codigo ROJO TEP:{self.codigoRojo}")
     
     def SistemaAlertaTemprana(self, valorFinalSAT):
         self.valorFinalSAT= valorFinalSAT
         
+        print(f"Soy el valor final de SAT:{self.valorFinalSAT}")
+        
         if self.valorFinalSAT==0:
             self.codigoAzul=+ 1
+            print(f"Soy el valor del codigo AZUL SAT:{self.codigoAzul}")
         elif self.valorFinalSAT==1:
             self.codigoVerde=+ 1
+            print(f"Soy el valor del codigo VERDE SAT:{self.codigoVerde}")
         elif self.valorFinalSAT==2:
             self.codigoAmarillo=+ 1
+            print(f"Soy el valor del codigo AMARILLO SAT:{self.codigoAmarillo}")
         elif self.valorFinalSAT==3:
             self.codigoNaranja=+ 1
+            print(f"Soy el valor del codigo NARANJA SAT:{self.codigoNaranja}")
         elif self.valorFinalSAT>3:
             self.codigoRojo=+ 1
+            print(f"Soy el valor del codigo ROJO SAT:{self.codigoRojo}")
+
 
     def SaveChild(self, valorFinalSAC):
         self.valorFinalSAC= valorFinalSAC
         
+        print(f"Soy el valor final de SAC:{self.valorFinalSAC}")
+        
         if self.valorFinalSAC==0 and self.valorFinalSAC<1:
             self.codigoAzul=+1
+            print(f"Soy el valor del codigo AZUL SAC:{self.codigoAzul}")
         elif self.valorFinalSAC==1 and self.valorFinalSAC<2:
             self.codigoVerde=+1
+            print(f"Soy el valor del codigo VERDE SAC:{self.codigoVerde}")
         elif self.valorFinalSAC==2 and self.valorFinalSAC<3:
             self.codigoAmarillo=+1
+            print(f"Soy el valor del codigo AMARILLO SAC:{self.codigoAmarillo}")
         elif self.valorFinalSAC==3 and self.valorFinalSAC<4:
             self.codigoNaranja=+1
+            print(f"Soy el valor del codigo NARANJA SAC:{self.codigoNaranja}")
         elif self.valorFinalSAC >=4:
             self.codigoRojo=+1  
+            print(f"Soy el valor del codigo ROJO SAC:{self.codigoRojo}")
     
         
