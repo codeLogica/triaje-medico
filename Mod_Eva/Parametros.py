@@ -1,7 +1,7 @@
 #Se importa el modulo a los que se asignara los valores, pasandolos como argumentos.
 from Mod_Eva import Resultado
 
-#Se crea una instancia de clase para la asignacion del color. 
+#Se crea una instancia de clase para la asignacion del color en otro modulo. 
 resultado = Resultado.CodigoColor()
 
 # Se reciben los valores pasados como argumentos y realiza la suma que dara como resultado un codigo de color. 
