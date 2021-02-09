@@ -497,12 +497,14 @@ class PaginaAbuso(tk.Frame):
                                      command= lambda: (abuso.Ausente(), [master.switch_frame(PaginaSignosVitales)]))
         botonAbusoAusente.grid(row=1, column=1)
 
+#En esta clase se muestra un frame con Entrys. Tenemos dos funciones para evitar que se ingresen caracteres alfabeticos y limitar la cantidad de caracteres numericos. 
 class PaginaSignosVitales(tk.Frame):
     def __init__(self, master):
         tk.Frame.__init__(self, master)
         tituloFrameSV= tk.Label(self, text= "Signos Vitales")
         tituloFrameSV.grid(row=0, column=1, columnspan=2)
         
+        #La idea crear una clase en un modulo aparte que se encargue de esto... 
         #validar= SignosVitales.Validar()
         
         def validar_datos(entrada_datos):            
@@ -564,7 +566,10 @@ class PaginaSignosVitales(tk.Frame):
                                validatecommand=(self.register(validar_datos), "%P"))
         saturacionO2.grid(row=7, column=2)
         
-        botonSignosVitales= tk.Button(self, text= "SIGUIENTE", command= lambda: (master.switch_frame(PaginaResultado))).grid(row=8, column=0, columnspan=3)
+        botonSignosVitales= tk.Button(self, 
+                                      text= "SIGUIENTE", 
+                                      command= lambda: (master.switch_frame(PaginaResultado)))
+        botonSignosVitales.grid(row=8, column=0, columnspan=3)
 
 #En esta pagina se dara a conocer el resultado segun la evaluacion de los parametros descritos anteriormente. Tiene que aparecer el frame del color correspondiente a la gravedad de la urgencia medica. 
 class PaginaResultado(tk.Frame):
@@ -573,19 +578,19 @@ class PaginaResultado(tk.Frame):
         
         resultado= Resultado.CodigoColor()
         
-        if resultado.codigoRojo != 0 and resultado.codigoRojo>=resultado.codigoNaranja or resultado.codigoRojo>=resultado.codigoAmarillo or resultado.codigoRojo>=resultado.codigoVerde or resultado.codigoRojo>=resultado.codigoAzul and resultado.codigoRojo>=1:
+        if resultado.codigoRojo != 0 and resultado.codigoRojo>resultado.codigoNaranja or resultado.codigoRojo>resultado.codigoAmarillo or resultado.codigoRojo>resultado.codigoVerde or resultado.codigoRojo>resultado.codigoAzul and resultado.codigoRojo>1:
             miLabel= tk.Label(self, text= "CODIGO ROJO", bg= "red")
             miLabel.grid()
-        elif resultado.codigoNaranja != 0 and resultado.codigoNaranja>=resultado.codigoAmarillo or resultado.codigoNaranja>=resultado.codigoVerde or resultado.codigoNaranja>=resultado.codigoAzul and resultado.codigoNaranja>=1:
+        elif resultado.codigoNaranja != 0 and resultado.codigoNaranja>resultado.codigoAmarillo or resultado.codigoNaranja>resultado.codigoVerde or resultado.codigoNaranja>resultado.codigoAzul and resultado.codigoNaranja>1:
             miLabel= tk.Label(self, text= "CODIGO NARANJA", bg= "orange")
             miLabel.grid()
-        elif resultado.codigoAmarillo != 0 and resultado.codigoAmarillo>=resultado.codigoVerde or resultado.codigoAmarillo>=resultado.codigoAzul and resultado.codigoAmarillo>=1:
+        elif resultado.codigoAmarillo != 0 and resultado.codigoAmarillo>resultado.codigoVerde or resultado.codigoAmarillo>resultado.codigoAzul and resultado.codigoAmarillo>1:
             miLabel= tk.Label(self, text= "CODIGO AMARILLO", bg= "yellow")
             miLabel.grid()
-        elif resultado.codigoVerde != 0 and resultado.codigoVerde>=resultado.codigoAzul and resultado.codigoVerde>=1:
+        elif resultado.codigoVerde != 0 and resultado.codigoVerde>resultado.codigoAzul and resultado.codigoVerde>1:
             miLabel= tk.Label(self, text= "CODIGO VERDE", bg= "green")
             miLabel.grid()
-        elif resultado.codigoAzul != 0 and resultado.codigoAzul>resultado.codigoRojo and resultado.codigoAzul>=1:
+        elif resultado.codigoAzul != 0 and resultado.codigoAzul>resultado.codigoRojo and resultado.codigoAzul>1:
             miLabel= tk.Label(self, text= "CODIGO AZUL", bg= "blue")
             miLabel.grid()
 
