@@ -9,6 +9,8 @@ class SampleApp(tk.Tk):
     def __init__(self):
         tk.Tk.__init__(self)
         tk.Tk.attributes(self, '-fullscreen', True)
+        tk.Tk.bind(self, "<F11>",'-fullscreen', False)
+        tk.Tk.bind(self, "<Escape>",'-fullscreen', False)
         self._frame = None
         self.switch_frame(PaginaGeneral)
 
