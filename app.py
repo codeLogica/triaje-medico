@@ -1,5 +1,5 @@
 import tkinter as tk
-import tkinter as ttk
+from tkinter import ttk
 from tkinter import PhotoImage
 from Mod_Eva import Modulo
 from Mod_Eva import Resultado
@@ -63,8 +63,8 @@ class PaginaConciencia(tk.Frame):
         
         conciencia = Modulo.ConcienciaOpcion()
         
-        def HoverEntrada(event, cualBoton):
-           self.cualBoton= cualBoton
+#        def HoverEntrada(event, cualBoton):
+#           self.cualBoton= cualBoton
            
            
 
@@ -72,7 +72,7 @@ class PaginaConciencia(tk.Frame):
                                   image= self.imagenDespierto, 
                                   command= lambda:(conciencia.Despierto(), [master.switch_frame(PaginaColorPiel)]))
         botonDespierto.grid(row=2, column=0)
-        botonDespierto.bind("<Enter>", HoverEntrada)
+#        botonDespierto.bind("<Enter>", HoverEntrada)
         botonSomnoliento= tk.Button(self, 
                                     image= self.imagenSomnoliento, 
                                     command= lambda:(conciencia.Somnoliento(), [master.switch_frame(PaginaColorPiel)]))
@@ -409,54 +409,48 @@ class PaginaRuidos(tk.Frame):
         self.imagenRespiracionRuidosNo= tk.PhotoImage(file= "Imagenes\Respiracion\cruidosNo.png")
         
         #ruidos = Modulo.RuidoRespiratorioOpcion()
-
+        
         def RuidosPresentes(self):
             def ruidoElegido(*args):
-                import tkinter as ttk
                 comboRuidoElegido= comboRuidos.get()
+                
                 if comboRuidoElegido== "Gruñido":
                     paramEvaluar.TEPR(False)
                     paramEvaluar.SAT(3)
                     paramEvaluar.SAC(0.333)
-                    return True
                 elif comboRuidoElegido== "Estridor":
                     paramEvaluar.TEPR(False)
                     paramEvaluar.SAT(3)
                     paramEvaluar.SAC(0.333)
-                    return True
                 elif comboRuidoElegido== "Disfonia":
                     paramEvaluar.TEPR(False)
                     paramEvaluar.SAT(3)
                     paramEvaluar.SAC(0.333)
-                    return True
                 elif comboRuidoElegido== "Quejido":
                     paramEvaluar.TEPR(False)
                     paramEvaluar.SAT(3)
                     paramEvaluar.SAC(0.333)
-                    return True
                 elif comboRuidoElegido== "Silibancia":
                     paramEvaluar.TEPR(False)
                     paramEvaluar.SAT(3)
                     paramEvaluar.SAC(0.333)
-                    return True
                 
                 master.switch_frame(PaginaDificultad)
-                
-
+            
             comboRuidos= ttk.Combobox(self)
-            comboRuidos['values'] =("Gruñido", 
-                                    "Estridor", 
-                                    "Disfonia", 
-                                    "Quejido", 
-                                    "Silibancia") 
+            comboRuidos['values']=("Gruñido", 
+                                   "Estridor", 
+                                   "Disfonia", 
+                                   "Quejido", 
+                                   "Silibancia") 
             comboRuidos.state(["readonly"])
             comboRuidos.bind("<<ComboboxSelected>>", ruidoElegido)
-            comboRuidos.pack()
+            comboRuidos.grid()
                     
         def RuidosAusentes(self):
             paramEvaluar.TEPR(True)
             paramEvaluar.SAT(0)
-            paramEvaluar.SAC(0.0)   
+            paramEvaluar.SAC(0.0)
             
             master.switch_frame(PaginaDificultad)
 
@@ -479,7 +473,6 @@ class PaginaDificultad(tk.Frame):
         
         def DificultadPresente(self):
             def dificultadElegida(*args):
-                import tkinter as ttk
                 comboDificultadElegida= comboDificultad.get()
 
                 if comboDificultadElegida== "Tiraje Intercostal":
@@ -508,7 +501,7 @@ class PaginaDificultad(tk.Frame):
                                         "Dis.Toraco Abdominal")
             comboDificultad.state(["readonly"])
             comboDificultad.bind("<<ComboboxSelected>>", dificultadElegida)
-            comboDificultad.pack()
+            comboDificultad.grid()
         
         def DificultadAusente(self):
             paramEvaluar.TEPR(True)
@@ -542,12 +535,11 @@ class PaginaPosicion(tk.Frame):
         self.imagenRespiracionPosicionNo= tk.PhotoImage(file= "Imagenes\Respiracion\posicionNo.png")
         
 #        posicionPatologica = Modulo.PosicionPatologicaOpcion()
-
+        
         def PosicionSi(self):
-            import tkinter as ttk
             def posicionElegida(*args):
                 comboPosicionElegida= comboPosicion.get()
-            
+                
                 if comboPosicionElegida== "Tripode":
                     paramEvaluar.TEPR(False)
                 elif comboPosicionElegida=="Olfateo":
@@ -555,15 +547,16 @@ class PaginaPosicion(tk.Frame):
                 elif comboPosicionElegida=="Cabeceo":
                     paramEvaluar.TEPR(False)
                     
+                master.switch_frame(PaginaAntecedentes)
+
             comboPosicion= ttk.Combobox(self)
             comboPosicion['values']= ("Tripode",
                                       "Olfateo",
                                       "Caebeceo")
             comboPosicion.state(["readonly"])
-            comboPosicion.bind("<<ComboboxSelected>>", posicionElegida)
-            comboPosicion.pack()
-            
-            master.switch_frame(PaginaAntecedentes)
+            comboPosicion.bind("<<ComboboxSelected>>", 
+                               posicionElegida)
+            comboPosicion.grid()
         
         def PosicionNo(self):
             paramEvaluar.TEPR(True)
