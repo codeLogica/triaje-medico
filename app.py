@@ -3,6 +3,7 @@ import tkinter as ttk
 from tkinter import PhotoImage
 from Mod_Eva import Modulo
 from Mod_Eva import Resultado
+from Mod_Eva import Parametros
 
 #Esta seccion sirve para camibiar entre frames durante la ejecucion del programa. 
 class SampleApp(tk.Tk):
@@ -61,11 +62,17 @@ class PaginaConciencia(tk.Frame):
         self.imagenCrisis= tk.PhotoImage(file= "Imagenes/Conciencia/concienciaCrisis.png")
         
         conciencia = Modulo.ConcienciaOpcion()
+        
+        def HoverEntrada(event, cualBoton):
+           self.cualBoton= cualBoton
+           
+           
 
         botonDespierto= tk.Button(self, 
                                   image= self.imagenDespierto, 
                                   command= lambda:(conciencia.Despierto(), [master.switch_frame(PaginaColorPiel)]))
         botonDespierto.grid(row=2, column=0)
+        botonDespierto.bind("<Enter>", HoverEntrada)
         botonSomnoliento= tk.Button(self, 
                                     image= self.imagenSomnoliento, 
                                     command= lambda:(conciencia.Somnoliento(), [master.switch_frame(PaginaColorPiel)]))
@@ -382,53 +389,146 @@ class PaginaConsolabilidad(tk.Frame):
                                          command= lambda: (es.Inconsolable(), [master.switch_frame(PaginaRuidos)]))
         botonInconsolabilidad.grid(row=1, column=1)
 
+#Se hace una instancia de clase del modulo parametros para pasarle los valores a analizar. 
+paramEvaluar = Parametros.Evaluar()
+
 #Los frames correspondientes al apartado respiratorio tienen la cualidad de no reedigir directamente la sigueinte pagina. Si se selecciona positivamente aparecera un combobox para especificar la clase de patologica encontrada y de ahi se hara la reedirecion a la siguiente pagina. 
 class PaginaRuidos(tk.Frame):
     def __init__(self, master):
         tk.Frame.__init__(self, master)
         tk.Frame.configure(self)
-        tituloFrameRespiratorio1= tk.Label(self, text= "Respiratorio")
+        tituloFrameRespiratorio1= tk.Label(self, 
+                                           text= "Respiratorio")
         tituloFrameRespiratorio1.grid(row=0, column=0)
-        tituloFrameRuidos= tk.Label(self, text= "Ruidos Patologicos")
+        
+        tituloFrameRuidos= tk.Label(self, 
+                                    text= "Ruidos Patologicos")
         tituloFrameRuidos.grid(row=1, column=0)
-        self.opcionRespiracionRuidosSi= False
-        self.opcionRespiracionRuidosNo= False
 
         self.imagenRespiracionRuidosSi= tk.PhotoImage(file= "Imagenes\Respiracion\cruidosSi.png")
         self.imagenRespiracionRuidosNo= tk.PhotoImage(file= "Imagenes\Respiracion\cruidosNo.png")
         
-        ruidos = Modulo.RuidoRespiratorioOpcion()
+        #ruidos = Modulo.RuidoRespiratorioOpcion()
+
+        def RuidosPresentes(self):
+            def ruidoElegido(*args):
+                import tkinter as ttk
+                comboRuidoElegido= comboRuidos.get()
+                if comboRuidoElegido== "Gruñido":
+                    paramEvaluar.TEPR(False)
+                    paramEvaluar.SAT(3)
+                    paramEvaluar.SAC(0.333)
+                    return True
+                elif comboRuidoElegido== "Estridor":
+                    paramEvaluar.TEPR(False)
+                    paramEvaluar.SAT(3)
+                    paramEvaluar.SAC(0.333)
+                    return True
+                elif comboRuidoElegido== "Disfonia":
+                    paramEvaluar.TEPR(False)
+                    paramEvaluar.SAT(3)
+                    paramEvaluar.SAC(0.333)
+                    return True
+                elif comboRuidoElegido== "Quejido":
+                    paramEvaluar.TEPR(False)
+                    paramEvaluar.SAT(3)
+                    paramEvaluar.SAC(0.333)
+                    return True
+                elif comboRuidoElegido== "Silibancia":
+                    paramEvaluar.TEPR(False)
+                    paramEvaluar.SAT(3)
+                    paramEvaluar.SAC(0.333)
+                    return True
+                
+                master.switch_frame(PaginaDificultad)
+                
+
+            comboRuidos= ttk.Combobox(self)
+            comboRuidos['values'] =("Gruñido", 
+                                    "Estridor", 
+                                    "Disfonia", 
+                                    "Quejido", 
+                                    "Silibancia") 
+            comboRuidos.state(["readonly"])
+            comboRuidos.bind("<<ComboboxSelected>>", ruidoElegido)
+            comboRuidos.pack()
+                    
+        def RuidosAusentes(self):
+            paramEvaluar.TEPR(True)
+            paramEvaluar.SAT(0)
+            paramEvaluar.SAC(0.0)   
+            
+            master.switch_frame(PaginaDificultad)
 
         botonRuidosPresentes= tk.Button(self, 
                                         image= self.imagenRespiracionRuidosSi, 
-                                        command= lambda: (ruidos.Presentes(), [master.switch_frame(PaginaDificultad)]))
+                                        command= lambda: RuidosPresentes(self))
         botonRuidosPresentes.grid(row=2, column=0)
         botonRuidosAusentes= tk.Button(self, 
                                        image= self.imagenRespiracionRuidosNo, 
-                                       command= lambda: (ruidos.Ausentes(), [master.switch_frame(PaginaDificultad)]))
+                                       command= lambda: RuidosAusentes(self))
         botonRuidosAusentes.grid(row=2, column=1)
         
 class PaginaDificultad(tk.Frame):
     def __init__(self, master):
         tk.Frame.__init__(self, master)
         tk.Frame.configure(self)
-        tituloFrameDificultad= tk.Label(self, text= "Datos de Dificultad")
+        tituloFrameDificultad= tk.Label(self, 
+                                        text= "Datos de Dificultad")
         tituloFrameDificultad.grid(row=0, column=0)
-        self.opcionRespiracionDificultadSi= False
-        self.opcionRespiracionDificultadNo= False
+        
+        def DificultadPresente(self):
+            def dificultadElegida(*args):
+                import tkinter as ttk
+                comboDificultadElegida= comboDificultad.get()
+
+                if comboDificultadElegida== "Tiraje Intercostal":
+                    paramEvaluar.TEPR(False)
+                    paramEvaluar.SAT(1)
+                    paramEvaluar.SAC(0.333)
+                elif comboDificultadElegida=="Retracciones":
+                    paramEvaluar.TEPR(False)
+                    paramEvaluar.SAT(2)
+                    paramEvaluar.SAC(0.666)
+                elif comboDificultadElegida=="Aleteo Nasal":
+                    paramEvaluar.TEPR(False)
+                    paramEvaluar.SAT(2)
+                    paramEvaluar.SAC(0.666)
+                elif comboDificultadElegida=="Dis.Toraco Abdominal":
+                    paramEvaluar.TEPR(False)
+                    paramEvaluar.SAT(3)
+                    paramEvaluar.SAC(0.666)
+            
+                master.switch_frame(PaginaPosicion)
+
+            comboDificultad= ttk.Combobox(self)
+            comboDificultad['values']= ("Tiraje Intercostal", 
+                                        "Retracciones",
+                                        "Aleteo Nasal",
+                                        "Dis.Toraco Abdominal")
+            comboDificultad.state(["readonly"])
+            comboDificultad.bind("<<ComboboxSelected>>", dificultadElegida)
+            comboDificultad.pack()
+        
+        def DificultadAusente(self):
+            paramEvaluar.TEPR(True)
+            paramEvaluar.SAT(0)
+            paramEvaluar.SAC(0.0) 
+        
+            master.switch_frame(PaginaPosicion)
 
         self.imagenRespiracionDificultadSi= tk.PhotoImage(file= "Imagenes\Respiracion\dificultadSi.png")
         self.imagenRespiracionDificultadNo= tk.PhotoImage(file= "Imagenes\Respiracion\dificultadNo.png")
         
-        dificultadResp = Modulo.DificultadRespiratoriaOpcion()
+#        dificultadResp = Modulo.DificultadRespiratoriaOpcion()
 
         botonDificultadPresente= tk.Button(self, 
                                            image= self.imagenRespiracionDificultadSi, 
-                                           command= lambda: (dificultadResp.Presente(),  [master.switch_frame(PaginaPosicion)]))
+                                           command= lambda: DificultadPresente(self))
         botonDificultadPresente.grid(row=1, column=0)
         botonDificultadAusente= tk.Button(self, 
                                           image= self.imagenRespiracionDificultadNo, 
-                                          command= lambda: (dificultadResp.Ausente(), [master.switch_frame(PaginaPosicion)]))
+                                          command= lambda: DificultadAusente(self))
         botonDificultadAusente.grid(row=1, column=1)
         
 class PaginaPosicion(tk.Frame):
@@ -441,15 +541,44 @@ class PaginaPosicion(tk.Frame):
         self.imagenRespiracionPosicionSi= tk.PhotoImage(file= "Imagenes\Respiracion\posicionSi.png")
         self.imagenRespiracionPosicionNo= tk.PhotoImage(file= "Imagenes\Respiracion\posicionNo.png")
         
-        posicionPatologica = Modulo.PosicionPatologicaOpcion()
+#        posicionPatologica = Modulo.PosicionPatologicaOpcion()
+
+        def PosicionSi(self):
+            import tkinter as ttk
+            def posicionElegida(*args):
+                comboPosicionElegida= comboPosicion.get()
+            
+                if comboPosicionElegida== "Tripode":
+                    paramEvaluar.TEPR(False)
+                elif comboPosicionElegida=="Olfateo":
+                    paramEvaluar.TEPR(False)
+                elif comboPosicionElegida=="Cabeceo":
+                    paramEvaluar.TEPR(False)
+                    
+            comboPosicion= ttk.Combobox(self)
+            comboPosicion['values']= ("Tripode",
+                                      "Olfateo",
+                                      "Caebeceo")
+            comboPosicion.state(["readonly"])
+            comboPosicion.bind("<<ComboboxSelected>>", posicionElegida)
+            comboPosicion.pack()
+            
+            master.switch_frame(PaginaAntecedentes)
+        
+        def PosicionNo(self):
+            paramEvaluar.TEPR(True)
+            paramEvaluar.SAT(0)
+            paramEvaluar.SAC(0.0)
+            
+            master.switch_frame(PaginaAntecedentes)
 
         botonPosicionSi= tk.Button(self, 
                                    image= self.imagenRespiracionPosicionSi, 
-                                   command= lambda: (posicionPatologica.Si(), [master.switch_frame(PaginaAntecedentes)]))
+                                   command= lambda: PosicionSi(self))
         botonPosicionSi.grid(row=1, column=0)
         botonPosicionNo= tk.Button(self, 
                                    image= self.imagenRespiracionPosicionNo, 
-                                   command= lambda: (posicionPatologica.No(), [master.switch_frame(PaginaAntecedentes)]))
+                                   command= lambda: PosicionNo(self))
         botonPosicionNo.grid(row=1, column=1)
                
 #A partir de estos frames los combobox ya no aparecen. 
@@ -593,7 +722,7 @@ class PaginaResultado(tk.Frame):
         elif resultado.codigoAzul != 0 and resultado.codigoAzul>resultado.codigoRojo and resultado.codigoAzul>1:
             miLabel= tk.Label(self, text= "CODIGO AZUL", bg= "blue")
             miLabel.grid()
-
+    
         print(resultado.codigoAzul)
         print(resultado.codigoVerde)
         print(resultado.codigoAmarillo)
