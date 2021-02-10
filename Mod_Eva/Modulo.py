@@ -143,7 +143,8 @@ class ConsolableOpcion():
         paramEvaluar.TEPC(False)
         paramEvaluar.SAT(2)
         paramEvaluar.SAC(0.666)
-        
+
+"""
 class RuidoRespiratorioOpcion():
     def Presentes(self):
         def ruidoElegido(*args):
@@ -184,7 +185,7 @@ class RuidoRespiratorioOpcion():
         paramEvaluar.TEPR(True)
         paramEvaluar.SAT(0)
         paramEvaluar.SAC(0.0)   
-        
+
 class DificultadRespiratoriaOpcion():
     def Presente(self):
         def dificultadElegida(*args):
@@ -240,7 +241,8 @@ class PosicionPatologicaOpcion():
         paramEvaluar.TEPR(True)
         paramEvaluar.SAT(0)
         paramEvaluar.SAC(0.0)
-        
+"""
+
 class AntecedentesOpcion():
     def Presentes(self):
         paramEvaluar.SAC(0.333)
