@@ -29,16 +29,29 @@ class SampleApp(tk.Tk):
 class PaginaGeneral(tk.Frame):
     def __init__(self, master):
         tk.Frame.__init__(self, master)
-        tituloPrograma= tk.Label(self, text= "PROGRAMA DE EVALUACION PEDIATRICA")
-        tituloPrograma.config(fg="blue", bg="light blue", font=("Verdana", 30))
+        tituloPrograma= tk.Label(self, 
+                                 text= "PROGRAMA DE EVALUACION PEDIATRICA")
+        tituloPrograma.config(fg="blue", 
+                              bg="light blue", 
+                              font=("Verdana", 30))
         tituloPrograma.grid()
-        introduccionPrograma1= tk.Label(self, text= "El siguiente programa es una DEMO para observar la funcionalidad de un triage computarizado. ").grid()
-        introduccionPrograma2= tk.Label(self, text="Favor de informar cualquier error durante su uso.").grid()
-        introduccionPrograma3= tk.Label(self, text="No nos hacemos responsables de los daños causados.").grid()
+        introduccionPrograma1= tk.Label(self, 
+                                        text= "El siguiente programa es una DEMO para observar la funcionalidad de un triage computarizado. ")
+        introduccionPrograma1.grid()
+        introduccionPrograma2= tk.Label(self, 
+                                        text="Favor de informar cualquier error durante su uso.")
+        introduccionPrograma2.grid()
+        introduccionPrograma3= tk.Label(self, 
+                                        text="No nos hacemos responsables de los daños causados.")
+        introduccionPrograma3.grid()
         self.imagen= tk.PhotoImage(file= ["bebe.gif"], format="gif -index 2")
-        introduccionPrograma4= tk.Label(self, image= self.imagen).grid(row= 3, column=0, columnspan= 2)
+        introduccionPrograma4= tk.Label(self, 
+                                        image= self.imagen)
+        introduccionPrograma4.grid(row= 3, column=0, columnspan= 2)
 
-        botonSiguienteGeneral= tk.Button(self, text= "INICIO", command=lambda: master.switch_frame(PaginaDatos))
+        botonSiguienteGeneral= tk.Button(self, 
+                                         text= "INICIO", 
+                                         command=lambda: master.switch_frame(PaginaDatos))
         botonSiguienteGeneral.grid(row= 6, column=0)
         
 #Aqui se tomaran los datos generales del paciente para identificarlo. Nombre, apellidos, fecha nacimiento y sexo. 
@@ -151,12 +164,18 @@ class PaginaConciencia(tk.Frame):
     def __init__(self, master):
         tk.Frame.__init__(self, master)
         tk.Frame.configure(self)
-        tituloGeneralConciencia= tk.Label(self, text= "Aspecto General")
-        tituloGeneralConciencia.config(fg="blue", bg="light blue", font=("Arial", 30))
+        tituloGeneralConciencia= tk.Label(self, 
+                                          text= "Aspecto General")
+        tituloGeneralConciencia.config(fg="blue", 
+                                       bg="light blue", 
+                                       font=("Arial", 30))
         tituloGeneralConciencia.grid(row=0, column=0, columnspan=3)
 
-        subtituloFrameConciencia= tk.Label(self, text= "Nivel de Conciencia")
-        subtituloFrameConciencia.config(fg="blue", bg="light blue", font=("Arial", 20))
+        subtituloFrameConciencia= tk.Label(self, 
+                                           text= "Nivel de Conciencia")
+        subtituloFrameConciencia.config(fg="blue", 
+                                        bg="light blue", 
+                                        font=("Arial", 20))
         subtituloFrameConciencia.grid(row=1, column=0, columnspan=3)
 
         self.imagenDespierto= tk.PhotoImage(file= "Imagenes/Conciencia/concienciaDespierto.png")
@@ -175,15 +194,15 @@ class PaginaConciencia(tk.Frame):
         botonSomnoliento= tk.Button(self, 
                                     image= self.imagenSomnoliento, 
                                     command= lambda:(conciencia.Somnoliento(), [master.switch_frame(PaginaColorPiel)]))
-        botonSomnoliento.grid(row=2, column=1)
+        botonSomnoliento.grid(row=2, column=2)
         botonIrritable= tk.Button(self, 
                                   image= self.imagenIrritable, 
                                   command= lambda:(conciencia.Irritable(), [master.switch_frame(PaginaColorPiel)]))
-        botonIrritable.grid(row=2, column=2)
+        botonIrritable.grid(row=3, column=0)
         botonNoDuerme= tk.Button(self, 
                                  image= self.imagenNoDuerme, 
                                  command= lambda:(conciencia.NoDuerme(), [master.switch_frame(PaginaColorPiel)]))
-        botonNoDuerme.grid(row=3, column=0)
+        botonNoDuerme.grid(row=3, column=1)
         botonCrisis= tk.Button(self, 
                                image= self.imagenCrisis, 
                                command= lambda:(conciencia.Crisis(), [master.switch_frame(PaginaColorPiel)]))
@@ -194,7 +213,11 @@ class PaginaColorPiel(tk.Frame):
     def __init__(self, master):
         tk.Frame.__init__(self, master)
         tk.Frame.configure(self)
-        tituloFramePiel= tk.Label(self, text= "Coloracion de la Piel")
+        tituloFramePiel= tk.Label(self, 
+                                  text= "Coloracion de la Piel")
+        tituloFramePiel.config(fg="blue", 
+                               bg="light blue", 
+                               font=("Arial", 20))
         tituloFramePiel.grid(row=0, column=0, columnspan=3)
 
         self.imagenPielRosada= tk.PhotoImage(file= "Imagenes/Piel/pielRosada.png")
@@ -236,7 +259,11 @@ class PaginaHidraPiel(tk.Frame):
     def __init__(self, master):
         tk.Frame.__init__(self, master)
         tk.Frame.configure(self)
-        tituloHidraFramePiel= tk.Label(self, text= "Piel")
+        tituloHidraFramePiel= tk.Label(self, 
+                                       text= "Piel")
+        tituloHidraFramePiel.config(fg="blue", 
+                                    bg="light blue", 
+                                    font=("Arial", 20))
         tituloHidraFramePiel.grid(row=0, column=0, columnspan=3)
 
         self.imagenHidraPielNormal= tk.PhotoImage(file= "Imagenes\Hidratacion\hidraPielNormal.png")
@@ -258,8 +285,12 @@ class PaginaHidraMucosa(tk.Frame):
     def __init__(self, master):
         tk.Frame.__init__(self, master)
         tk.Frame.configure(self)
-        tituloHidraFrameMucosas= tk.Label(self, text= "Mucosa")
-        tituloHidraFrameMucosas.grid(row=0, column=0)
+        tituloHidraFrameMucosas= tk.Label(self, 
+                                          text= "Mucosa")
+        tituloHidraFrameMucosas.config(fg="blue",
+                                       bg="light blue", 
+                                       font=("Arial", 20))
+        tituloHidraFrameMucosas.grid(row=0, column=0, columnspan=3)
 
         self.imagenHidraMucosaNormal= tk.PhotoImage(file= "Imagenes\Hidratacion\hidraMucosaNormal.png")
         self.imagenHidraMucosaSeca= tk.PhotoImage(file= "Imagenes\Hidratacion\hidraMucosaSeca.png")
@@ -270,6 +301,7 @@ class PaginaHidraMucosa(tk.Frame):
                                           image= self.imagenHidraMucosaNormal, 
                                           command= lambda: (hidraMucosa.Normal(), [master.switch_frame(PaginaHidraOjos)]))
         botonHidraMucosaNormal.grid(row=1, column=0)
+        
         botonHidraMucosaSeca= tk.Button(self, 
                                         image= self.imagenHidraMucosaSeca, 
                                         command= lambda: (hidraMucosa.Seca(), [master.switch_frame(PaginaHidraOjos)]))
@@ -280,8 +312,12 @@ class PaginaHidraOjos(tk.Frame):
     def __init__(self, master):
         tk.Frame.__init__(self, master)
         tk.Frame.configure(self)
-        tituloHidraFrameOjos= tk.Label(self, text= "Ojos")
-        tituloHidraFrameOjos.grid(row=0, column=0)
+        tituloHidraFrameOjos= tk.Label(self, 
+                                       text= "Ojos")
+        tituloHidraFrameOjos.config(fg="blue", 
+                                    bg="light blue", 
+                                    font=("Arial", 20))
+        tituloHidraFrameOjos.grid(row=0, column=0, columnspan=3)
 
         self.imagenHidraOjosNormal= tk.PhotoImage(file= "Imagenes\Hidratacion\hidraOjosNormal.png")
         self.imagenHidraOjosHundidos= tk.PhotoImage(file= "Imagenes\Hidratacion\hidraOjosHundidos.png")
@@ -292,6 +328,7 @@ class PaginaHidraOjos(tk.Frame):
                                         image= self.imagenHidraOjosNormal, 
                                         command= lambda: (hidraOjos.Normal(), [master.switch_frame(PaginaPliegue)]))
         botonHidraOjosNormal.grid(row=1, column=0)
+        
         botonHidraOjosHundidos= tk.Button(self, 
                                           image= self.imagenHidraOjosHundidos, 
                                           command= lambda: (hidraOjos.Hundidos(), [master.switch_frame(PaginaPliegue)]))
@@ -302,8 +339,12 @@ class PaginaPliegue(tk.Frame):
     def __init__(self, master):
         tk.Frame.__init__(self, master)
         tk.Frame.configure(self)
-        tituloHidraFramePliegue= tk.Label(self, text= "Pliegue")
-        tituloHidraFramePliegue.grid(row=0, column=0)
+        tituloHidraFramePliegue= tk.Label(self, 
+                                          text= "Pliegue")
+        tituloHidraFramePliegue.config(fg="blue", 
+                                       bg="light blue", 
+                                       font=("Arial", 20))
+        tituloHidraFramePliegue.grid(row=0, column=0, columnspan=3)
 
         self.imagenHidraPlieguePositivo= tk.PhotoImage(file= "Imagenes\Hidratacion\hidraPlieguePositivo.png")
         self.imagenHidraPliegueNegativo= tk.PhotoImage(file= "Imagenes\Hidratacion\hidraPliegueNegativo.png")
@@ -314,6 +355,7 @@ class PaginaPliegue(tk.Frame):
                                              image= self.imagenHidraPlieguePositivo, 
                                              command= lambda: (hidraPliegue.Positivo(), [master.switch_frame(PaginaHidraVomito)]))
         botonHidraPlieguePositivo.grid(row=1, column=0)
+        
         botonHidraPliegueNegativo= tk.Button(self, 
                                              image= self.imagenHidraPliegueNegativo, 
                                              command= lambda: (hidraPliegue.Negativo(), [master.switch_frame(PaginaHidraVomito)]))
@@ -324,8 +366,12 @@ class PaginaHidraVomito(tk.Frame):
     def __init__(self, master):
         tk.Frame.__init__(self, master)
         tk.Frame.configure(self)
-        tituloHidraFrameVomito= tk.Label(self, text= "Vomito")
-        tituloHidraFrameVomito.grid(row=0, column=0)
+        tituloHidraFrameVomito= tk.Label(self, 
+                                         text= "Vomito")
+        tituloHidraFrameVomito.config(fg="blue", 
+                                      bg="light blue", 
+                                      font=("Arial", 20))
+        tituloHidraFrameVomito.grid(row=0, column=0, columnspan=3)
 
         self.imagenHidraVomitoPresente= tk.PhotoImage(file= "Imagenes\Hidratacion\hidraVomitoPresente.png")
         self.imagenHidraVomitoAusente= tk.PhotoImage(file= "Imagenes\Hidratacion\hidraVomitoAusente.png")
@@ -336,6 +382,7 @@ class PaginaHidraVomito(tk.Frame):
                                             image= self.imagenHidraVomitoPresente, 
                                             command= lambda: (hidraVomito.Presente(), [master.switch_frame(PaginaHidraTolerancia)]))
         botonHidraVomitoPresente.grid(row=1, column=0)
+        
         botonHidraVomitoAusente= tk.Button(self, 
                                            image= self.imagenHidraVomitoAusente, 
                                            command= lambda: (hidraVomito.Ausente(), [master.switch_frame(PaginaHidraTolerancia)]))
@@ -346,8 +393,12 @@ class PaginaHidraTolerancia(tk.Frame):
     def __init__(self, master):
         tk.Frame.__init__(self, master)
         tk.Frame.configure(self)
-        tituloHidraFrameTolerancia= tk.Label(self, text= "¿Tolera Via Oral?")
-        tituloHidraFrameTolerancia.grid(row=0, column=0)
+        tituloHidraFrameTolerancia= tk.Label(self, 
+                                             text= "¿Tolera Via Oral?")
+        tituloHidraFrameTolerancia.config(fg="blue", 
+                                          bg="light blue", 
+                                          font=("Arial", 20))
+        tituloHidraFrameTolerancia.grid(row=0, column=0, columnspan=3)
 
         self.imagenHidraToleranciaSi= tk.PhotoImage(file= "Imagenes\Hidratacion\hidraToleranciaSi.png")
         self.imagenHidraToleranciaNo= tk.PhotoImage(file= "Imagenes\Hidratacion\hidraToleranciaNo.png")
@@ -358,6 +409,7 @@ class PaginaHidraTolerancia(tk.Frame):
                                           image= self.imagenHidraToleranciaSi, 
                                           command= lambda: (tolerancia.SiTolera(), [master.switch_frame(PaginaActividad)]))
         botonHidraToleranciaSi.grid(row=1, column=0)
+        
         botonHidraToleranciaNo= tk.Button(self, 
                                           image= self.imagenHidraToleranciaNo, 
                                           command= lambda: (tolerancia.NoTolera(), [master.switch_frame(PaginaActividad)]))
@@ -368,8 +420,12 @@ class PaginaActividad(tk.Frame):
     def __init__(self, master):
         tk.Frame.__init__(self, master)
         tk.Frame.configure(self)
-        tituloFrameActividad= tk.Label(self, text= "Actividad")
-        tituloFrameActividad.grid(row=0, column=0)
+        tituloFrameActividad= tk.Label(self, 
+                                       text= "Actividad")
+        tituloFrameActividad.config(fg="blue", 
+                                    bg="light blue", 
+                                    font=("Arial", 20))
+        tituloFrameActividad.grid(row=0, column=0, columnspan=3)
 
         self.imagenJuega= tk.PhotoImage(file= "Imagenes\Actividad\cactividadJuega.png")
         self.imagenConfundido= tk.PhotoImage(file= "Imagenes\Actividad\cactividadConfundido.png")
@@ -382,14 +438,17 @@ class PaginaActividad(tk.Frame):
                               image= self.imagenJuega, 
                               command= lambda: (actividad.Juega(), [master.switch_frame(PaginaTono)]))
         botonJuega.grid(row=1, column=0)
+        
         botonConfundido= tk.Button(self, 
                                    image= self.imagenConfundido, 
                                    command= lambda: (actividad.Confundido(), [master.switch_frame(PaginaTono)]))
         botonConfundido.grid(row=1, column=1)
+        
         botonLetargico= tk.Button(self, 
                                   image= self.imagenLetargico, 
                                   command= lambda: (actividad.Letargico(), [master.switch_frame(PaginaTono)]))
         botonLetargico.grid(row=2, column=0)
+        
         botonInconsciente= tk.Button(self, 
                                      image= self.imagenInconsciente, 
                                      command= lambda: (actividad.Inconsciente(), [master.switch_frame(PaginaTono)]))
@@ -400,8 +459,12 @@ class PaginaTono(tk.Frame):
     def __init__(self, master):
         tk.Frame.__init__(self, master)
         tk.Frame.configure(self)
-        tituloFrameTono= tk.Label(self, text= "Tono")
-        tituloFrameTono.grid(row=0, column=0)
+        tituloFrameTono= tk.Label(self, 
+                                  text= "Tono")
+        tituloFrameTono.config(fg="blue", 
+                               bg="light blue", 
+                               font=("Arial", 20))
+        tituloFrameTono.grid(row=0, column=0, columnspan=3)
 
         self.imagenEutonico= tk.PhotoImage(file= "Imagenes\Tono\ctonoEutonico.png")
         self.imagenHipotonico= tk.PhotoImage(file= "Imagenes\Tono\ctonoHipotonico.png")
@@ -422,8 +485,12 @@ class PaginaVisual(tk.Frame):
     def __init__(self, master):
         tk.Frame.__init__(self, master)
         tk.Frame.configure(self)
-        tituloFrameVisual= tk.Label(self, text= "Contacto Visual")
-        tituloFrameVisual.grid(row=0, column=0)
+        tituloFrameVisual= tk.Label(self, 
+                                    text= "Contacto Visual")
+        tituloFrameVisual.config(fg="blue", 
+                                 bg="light blue", 
+                                 font=("Arial", 20))
+        tituloFrameVisual.grid(row=0, column=0, columnspan=3)
 
         self.imagenMantiene= tk.PhotoImage(file= "Imagenes\Visual\cvisualMantiene.png")
         self.imagenNoMantiene= tk.PhotoImage(file= "Imagenes\Visual\cvisualNoMantiene.png")
@@ -449,8 +516,12 @@ class PaginaLlanto(tk.Frame):
     def __init__(self, master):
         tk.Frame.__init__(self, master)
         tk.Frame.configure(self)
-        tituloFrameLlanto= tk.Label(self, text= "Lenguaje o Llanto")
-        tituloFrameLlanto.grid(row=0, column=0)
+        tituloFrameLlanto= tk.Label(self, 
+                                    text= "Lenguaje o Llanto")
+        tituloFrameLlanto.config(fg="blue", 
+                                 bg="light blue", 
+                                 font=("Arial", 20))
+        tituloFrameLlanto.grid(row=0, column=0, columnspan=3)
 
         self.imagenLlantoFuerte= tk.PhotoImage(file= "Imagenes\Llanto\llantoFuerte.png")
         self.imagenLlantoDebil= tk.PhotoImage(file= "Imagenes\Llanto\llantoDebil.png")
@@ -471,8 +542,12 @@ class PaginaConsolabilidad(tk.Frame):
     def __init__(self, master):
         tk.Frame.__init__(self, master)
         tk.Frame.configure(self)
-        tituloFrameConsolabilidad= tk.Label(self, text= "Consolabilidad")
-        tituloFrameConsolabilidad.grid(row=0, column=0)
+        tituloFrameConsolabilidad= tk.Label(self, 
+                                            text= "Consolabilidad")
+        tituloFrameConsolabilidad.config(fg="blue", 
+                                         bg="light blue", 
+                                         font=("Arial", 20))
+        tituloFrameConsolabilidad.grid(row=0, column=0, columnspan=3)
 
         self.imagenLlantoConsolable= tk.PhotoImage(file= "Imagenes\Llanto\llantoConsolable.png")
         self.imagenLlantoInconsolable= tk.PhotoImage(file= "Imagenes\Llanto\llantoInconsolable.png")
@@ -498,11 +573,13 @@ class PaginaRuidos(tk.Frame):
         tk.Frame.configure(self)
         tituloFrameRespiratorio1= tk.Label(self, 
                                            text= "Respiratorio")
-        tituloFrameRespiratorio1.grid(row=0, column=0)
+        tituloFrameRespiratorio1.config(fg="blue", bg="light blue", font=("Arial", 30))
+        tituloFrameRespiratorio1.grid(row=0, column=0, columnspan=3)
         
         tituloFrameRuidos= tk.Label(self, 
                                     text= "Ruidos Patologicos")
-        tituloFrameRuidos.grid(row=1, column=0)
+        tituloFrameRuidos.config(fg="blue", bg="light blue", font=("Arial", 20))
+        tituloFrameRuidos.grid(row=1, column=0, columnspan=3)
 
         self.imagenRespiracionRuidosSi= tk.PhotoImage(file= "Imagenes\Respiracion\cruidosSi.png")
         self.imagenRespiracionRuidosNo= tk.PhotoImage(file= "Imagenes\Respiracion\cruidosNo.png")
@@ -544,7 +621,7 @@ class PaginaRuidos(tk.Frame):
                                    "Silibancia") 
             comboRuidos.state(["readonly"])
             comboRuidos.bind("<<ComboboxSelected>>", ruidoElegido)
-            comboRuidos.grid()
+            comboRuidos.grid(row=3, column=0, columnspan=3)
                     
         def RuidosAusentes(self):
             paramEvaluar.TEPR(True)
@@ -568,7 +645,8 @@ class PaginaDificultad(tk.Frame):
         tk.Frame.configure(self)
         tituloFrameDificultad= tk.Label(self, 
                                         text= "Datos de Dificultad")
-        tituloFrameDificultad.grid(row=0, column=0)
+        tituloFrameDificultad.config(fg="blue", bg="light blue", font=("Arial", 20))
+        tituloFrameDificultad.grid(row=0, column=0, columnspan=3)
         
         def DificultadPresente(self):
             def dificultadElegida(*args):
@@ -600,7 +678,7 @@ class PaginaDificultad(tk.Frame):
                                         "Dis.Toraco Abdominal")
             comboDificultad.state(["readonly"])
             comboDificultad.bind("<<ComboboxSelected>>", dificultadElegida)
-            comboDificultad.grid()
+            comboDificultad.grid(row=2, column=0, columnspan=3)
         
         def DificultadAusente(self):
             paramEvaluar.TEPR(True)
@@ -627,8 +705,10 @@ class PaginaPosicion(tk.Frame):
     def __init__(self, master):
         tk.Frame.__init__(self, master)
         tk.Frame.configure(self)
-        tituloFramePosicion= tk.Label(self, text= "Posicion Patologica")
-        tituloFramePosicion.grid(row=0, column=0)
+        tituloFramePosicion= tk.Label(self, 
+                                      text= "Posicion Patologica")
+        tituloFramePosicion.config(fg="blue", bg="light blue", font=("Arial", 20))
+        tituloFramePosicion.grid(row=0, column=0, columnspan=3)
 
         self.imagenRespiracionPosicionSi= tk.PhotoImage(file= "Imagenes\Respiracion\posicionSi.png")
         self.imagenRespiracionPosicionNo= tk.PhotoImage(file= "Imagenes\Respiracion\posicionNo.png")
@@ -678,10 +758,14 @@ class PaginaAntecedentes(tk.Frame):
     def __init__(self, master):
         tk.Frame.__init__(self, master)
         tk.Frame.configure(self)
-        tituloFrameAntecedentes= tk.Label(self, text= "Antecedentes")
-        tituloFrameAntecedentes.grid(row=0, column=0)
-        subtituloFrameAntecedentes= tk.Label(self, text="Enfermedades Cronico-Degenerativas o Uso de Esteroides")
-        subtituloFrameAntecedentes.grid(row=1, column=0)
+        tituloFrameAntecedentes= tk.Label(self, 
+                                          text= "Antecedentes")
+        tituloFrameAntecedentes.config(fg="blue", bg="light blue", font=("Arial", 20))
+        tituloFrameAntecedentes.grid(row=0, column=0, columnspan=3)
+        subtituloFrameAntecedentes= tk.Label(self, 
+                                             text="Enfermedades Cronico-Degenerativas o Uso de Esteroides")
+        subtituloFrameAntecedentes.config(fg="blue", bg="light blue", font=("Arial", 10))
+        subtituloFrameAntecedentes.grid(row=1, column=0, columnspan=3)
 
         self.imagenAntecedentesSi= tk.PhotoImage(file= "Imagenes\Antecedentes\cantecedentesSi.png")
         self.imagenAntecedentesNo= tk.PhotoImage(file= "Imagenes\Antecedentes\cantecedentesNo.png")
@@ -701,8 +785,10 @@ class PaginaAbuso(tk.Frame):
     def __init__(self, master):
         tk.Frame.__init__(self, master)
         tk.Frame.configure(self)
-        tituloFrameAbuso= tk.Label(self, text= "Datos de Abuso")
-        tituloFrameAbuso.grid(row=0, column=0)
+        tituloFrameAbuso= tk.Label(self, 
+                                   text= "Datos de Abuso")
+        tituloFrameAbuso.config(fg="blue", bg="light blue", font=("Arial", 20))
+        tituloFrameAbuso.grid(row=0, column=0, columnspan=3)
 
         self.imagenAbusoSi= tk.PhotoImage(file= "Imagenes\Antecedentes\cabusoSi.png")
         self.imagenAbusoNo= tk.PhotoImage(file= "Imagenes\Antecedentes\cabusoNo.png")
