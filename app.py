@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 from tkinter import PhotoImage
+from datetime import datetime
 from Mod_Eva import Modulo
 from Mod_Eva import Resultado
 from Mod_Eva import Parametros
@@ -9,9 +10,9 @@ from Mod_Eva import Parametros
 class SampleApp(tk.Tk):
     def __init__(self):
         tk.Tk.__init__(self)
-        tk.Tk.attributes(self, '-fullscreen', True)
-        tk.Tk.bind(self, "<F11>",'-fullscreen', False)
-        tk.Tk.bind(self, "<Escape>",'-fullscreen', False)
+#        tk.Tk.attributes(self, '-fullscreen', True)
+#        tk.Tk.bind(self, "<F11>",'-fullscreen', False)
+#        tk.Tk.bind(self, "<Escape>",'-fullscreen', False)
         self._frame = None
         self.switch_frame(PaginaGeneral)
 
@@ -21,7 +22,7 @@ class SampleApp(tk.Tk):
             self._frame.destroy()
         self._frame = new_frame
         self._frame.pack()
-        
+
 #Esta es la pagina principal del programa, donde se muestra informacion relevante. Se inicializa el frame y dentro encontramos los widgets necesarios. Se basa en una serie de imagenes con los parametros a analizar y dependiendo de la seleccion se evaluan en otro modulo. 
 #Se sigue el siguiente esquema en todos los frames:
 #Inizialicacion --> informacion --> imagenes --> llamada al modulo con el parametro a evaluar --> botones 
@@ -29,7 +30,7 @@ class PaginaGeneral(tk.Frame):
     def __init__(self, master):
         tk.Frame.__init__(self, master)
         tituloPrograma= tk.Label(self, text= "PROGRAMA DE EVALUACION PEDIATRICA")
-        tituloPrograma.config(fg="blue", bg="light blue", font=("Verdana", 40))
+        tituloPrograma.config(fg="blue", bg="light blue", font=("Verdana", 30))
         tituloPrograma.grid()
         introduccionPrograma1= tk.Label(self, text= "El siguiente programa es una DEMO para observar la funcionalidad de un triage computarizado. ").grid()
         introduccionPrograma2= tk.Label(self, text="Favor de informar cualquier error durante su uso.").grid()
@@ -37,9 +38,112 @@ class PaginaGeneral(tk.Frame):
         self.imagen= tk.PhotoImage(file= ["bebe.gif"], format="gif -index 2")
         introduccionPrograma4= tk.Label(self, image= self.imagen).grid(row= 3, column=0, columnspan= 2)
 
-        botonSiguienteGeneral= tk.Button(self, text= "INICIO", command=lambda: master.switch_frame(PaginaConciencia))
+        botonSiguienteGeneral= tk.Button(self, text= "INICIO", command=lambda: master.switch_frame(PaginaDatos))
         botonSiguienteGeneral.grid(row= 6, column=0)
         
+#Aqui se tomaran los datos generales del paciente para identificarlo. Nombre, apellidos, fecha nacimiento y sexo. 
+class PaginaDatos(tk.Frame):
+    def __init__(self, master):
+        tk.Frame.__init__(self, master)
+        
+        tituloDatos= tk.Label(self, text= "Datos del Paciente")
+        tituloDatos.grid(row=0, column=0, columnspan=3)
+        
+        #Funcion para corroborar que se ingresen caracteres alfabeticos en el nombre y que sean en mayusculas. 
+        def validar_mayuscula(nomApAp_mayuscula):            
+            if (nomApAp_mayuscula) == None:
+                return False
+            checks = [] 
+            for i, char in enumerate(nomApAp_mayuscula):
+                if i in ():
+                    checks.append(char == " ", ".")
+                else:
+                    checks.append(char.isupper())
+            return all(checks)
+
+        #Funcion para corrobar el ingreso de la fecha de nacimiento con datos numericos y con 8 digitos a lo maximo (2 dia/2 mes/4 año) y 2 caracteres barra diagonal para separarlos.
+        def edad_por_nacimiento(f_nacimiento):
+            if len(f_nacimiento) > 10:
+                return False
+            checks = [] 
+            for i, char in enumerate(f_nacimiento):
+                if i in (2,2) or i in (2, 2) or i in (2, 5):
+                    checks.append(char == "/")
+                    f_nacimiento_comprobacion= str(f_nacimiento)
+                else:
+                    checks.append(char.isdecimal())
+
+            #Se comprueba que se tengan los 10 caracteres (8 digitos y 2 barras diagonales)
+                if len(f_nacimiento) == 10:
+                    diaActual= datetime.now()
+                    diaNacimiento= datetime.strptime(f_nacimiento, "%d/%m/%Y")
+                    calculoEdad= diaActual - diaNacimiento
+                    print(calculoEdad)
+    
+            return all(checks)
+        """
+        def guardarDatos():
+            self.switch_frame(PaginaConciencia)
+            
+            
+            if nombreEntry.get() != None and apellPaterno.get() != None and apellMaterno.get() != None and fechaNacimiento.get() != None and radioButtonHombre.get() != None or radioButtonMujer.get() != None:
+                nombreEntry= tk.Entry(self, state=tk.DISABLED)
+                apellPaterno= tk.Entry(self, state=tk.DISABLED)
+                apellMaterno= tk.Entry(self, state=tk.DISABLED)
+                fechaNacimiento= tk.Entry(self, state=tk.DISABLED)
+        """        
+            
+        opcionNombre= tk.StringVar()
+        tk.Label(self, text= "Nombre").grid(row=1, column=0, sticky="e")
+        nombreEntry= tk.Entry(self,
+                              textvariable=opcionNombre, 
+                              validate="key",
+                              validatecommand=(self.register(validar_mayuscula), "%P"))
+        nombreEntry.grid(row=1, column=2)
+        
+        opcionApPat= tk.StringVar()
+        tk.Label(self, text= "Apellido Paterno").grid(row=2, column=0, sticky="e")
+        apellPaterno= tk.Entry(self,
+                               textvariable=opcionApPat,
+                               validate="key",
+                               validatecommand=(self.register(validar_mayuscula), "%P"))
+        apellPaterno.grid(row=2, column=2)
+
+        opcionApMat= tk.StringVar()
+        tk.Label(self, text= "Apellido Materno").grid(row=3, column=0, sticky="e")
+        apellMaterno= tk.Entry(self,
+                               textvariable=opcionApMat, 
+                               validate="key",
+                               validatecommand=(self.register(validar_mayuscula), "%P"))
+        apellMaterno.grid(row=3, column=2)
+        
+        opcionNacimiento= tk.StringVar()
+        tk.Label(self, text= "Fecha de Nacimiento").grid(row=4, column=0, sticky="e")
+        fechaNacimiento= tk.Entry(self,
+                                  textvariable= opcionNacimiento,
+                                  validate="key",
+                                  validatecommand=(self.register(edad_por_nacimiento), "%P"))
+        fechaNacimiento.grid(row=4, column=2)
+        
+        opcionSexo= tk.IntVar()
+        tk.Label(self, text= "Sexo").grid(row=5, column=0, sticky="e")
+        radioButtonHombre= tk.Radiobutton(self,
+                                          text= "Hombre",
+                                          variable=opcionSexo,
+                                          value= 1)
+        radioButtonHombre.grid(row=5, column=2, sticky="w")
+        
+        radioButtonMujer= tk.Radiobutton(self,
+                                          text= "Mujer",
+                                          variable=opcionSexo,
+                                          value= 2)
+        radioButtonMujer.grid(row=6, column=2, sticky="w")
+
+        botonGuardarDatos= tk.Button(self, 
+                                     text="Guardar",
+                                    command=lambda: master.switch_frame(PaginaConciencia))
+        botonGuardarDatos.grid(row=7, column=0, columnspan=3)
+
 #Este es el primer frame con el primer parametro a evaluar, el de conciencia. Lo mas relevante es la funcionalidad del imagebutton: se crea una funcion lambda que manda a llamar dos funciones, ambas estan dentro de una tupla;
 # 1.- La primera para asignar el valor segun el parametro a evlauar par dar un puntaje final  y asi dar un resultado
 # 2.- La segunda aun dentro de la tupla, contenida en una lista, para dar paso al siguiente frame. 
@@ -63,16 +167,11 @@ class PaginaConciencia(tk.Frame):
         
         conciencia = Modulo.ConcienciaOpcion()
         
-#        def HoverEntrada(event, cualBoton):
-#           self.cualBoton= cualBoton
-           
-           
-
         botonDespierto= tk.Button(self, 
                                   image= self.imagenDespierto, 
                                   command= lambda:(conciencia.Despierto(), [master.switch_frame(PaginaColorPiel)]))
         botonDespierto.grid(row=2, column=0)
-#        botonDespierto.bind("<Enter>", HoverEntrada)
+        
         botonSomnoliento= tk.Button(self, 
                                     image= self.imagenSomnoliento, 
                                     command= lambda:(conciencia.Somnoliento(), [master.switch_frame(PaginaColorPiel)]))
@@ -389,7 +488,7 @@ class PaginaConsolabilidad(tk.Frame):
                                          command= lambda: (es.Inconsolable(), [master.switch_frame(PaginaRuidos)]))
         botonInconsolabilidad.grid(row=1, column=1)
 
-#Se hace una instancia de clase del modulo parametros para pasarle los valores a analizar. 
+#Se hace una instancia de clase del modulo parametros para pasarle los valores a analizar, solo en la seccion Respiratoria que incluyen la siguientes 3 clases.
 paramEvaluar = Parametros.Evaluar()
 
 #Los frames correspondientes al apartado respiratorio tienen la cualidad de no reedigir directamente la sigueinte pagina. Si se selecciona positivamente aparecera un combobox para especificar la clase de patologica encontrada y de ahi se hara la reedirecion a la siguiente pagina. 
@@ -574,7 +673,7 @@ class PaginaPosicion(tk.Frame):
                                    command= lambda: PosicionNo(self))
         botonPosicionNo.grid(row=1, column=1)
                
-#A partir de estos frames los combobox ya no aparecen. 
+#A partir de estos frames los combobox ya no aparecen. Se mantiene la misma estructura anterior. 
 class PaginaAntecedentes(tk.Frame):
     def __init__(self, master):
         tk.Frame.__init__(self, master)
@@ -656,7 +755,6 @@ class PaginaSignosVitales(tk.Frame):
                               validate="key",
                               validatecommand=(self.register(validar_datos), "%P"))
         freCardiaca.grid(row=2, column=2)
-        
 
         tk.Label(self, text= "Frecuencia Respiratoria").grid(row=3, column=1, sticky="e")
         freRespiratoria= tk.Entry(self,
@@ -715,12 +813,6 @@ class PaginaResultado(tk.Frame):
         elif resultado.codigoAzul != 0 and resultado.codigoAzul>resultado.codigoRojo and resultado.codigoAzul>1:
             miLabel= tk.Label(self, text= "CODIGO AZUL", bg= "blue")
             miLabel.grid()
-    
-        print(resultado.codigoAzul)
-        print(resultado.codigoVerde)
-        print(resultado.codigoAmarillo)
-        print(resultado.codigoNaranja)
-        print(resultado.codigoRojo)
         
 if __name__ == "__main__":
     app = SampleApp()
