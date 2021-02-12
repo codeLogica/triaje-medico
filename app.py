@@ -1,12 +1,13 @@
 import tkinter as tk
 from tkinter import ttk
 from tkinter import PhotoImage
+from tkinter import messagebox as msb
 from datetime import datetime
 from Mod_Eva import Modulo
 from Mod_Eva import Resultado
 from Mod_Eva import Parametros
 
-#Esta seccion sirve para camibiar entre frames durante la ejecucion del programa. 
+#Esta seccion sirve para camibiar entre frames durante la ejecucion del programa. Funciona como manejador principal de la apariencia de todo el programa. 
 class SampleApp(tk.Tk):
     def __init__(self):
         tk.Tk.__init__(self)
@@ -91,10 +92,11 @@ class PaginaDatos(tk.Frame):
                     diaActual= datetime.now()
                     diaNacimiento= datetime.strptime(f_nacimiento, "%d/%m/%Y")
                     calculoEdad= diaActual - diaNacimiento
-                    print(calculoEdad)
-    
+                    return calculoEdad
+            
             return all(checks)
         """
+        #La idea es que se desactiven los entry para que no se puedan modificar los datos. 
         def guardarDatos():
             self.switch_frame(PaginaConciencia)
             
@@ -104,8 +106,20 @@ class PaginaDatos(tk.Frame):
                 apellPaterno= tk.Entry(self, state=tk.DISABLED)
                 apellMaterno= tk.Entry(self, state=tk.DISABLED)
                 fechaNacimiento= tk.Entry(self, state=tk.DISABLED)
-        """        
+        """       
+        def corroborar_datos():
+            nomEnt= nombreEntry.get()
+            apPatEnt= apellPaterno.get()
+            apMatEnt= apellMaterno.get()
+            fechNacEnt= fechaNacimiento.get()
             
+            
+            verificarDatosPaciente= msb.askyesno(title="Verificacion de Datos", 
+                         message=(f"¿Datos introducidos correctamente?\n\n Nombre: {nomEnt}\n Apellido Paterno: {apPatEnt}\n Apellido Materno: {apMatEnt}\n Fecha de Nacimiento: {fechNacEnt}"))
+            
+            if verificarDatosPaciente == True:
+                master.switch_frame(PaginaConciencia) 
+                      
         opcionNombre= tk.StringVar()
         tk.Label(self, text= "Nombre").grid(row=1, column=0, sticky="e")
         nombreEntry= tk.Entry(self,
@@ -154,7 +168,7 @@ class PaginaDatos(tk.Frame):
 
         botonGuardarDatos= tk.Button(self, 
                                      text="Guardar",
-                                    command=lambda: master.switch_frame(PaginaConciencia))
+                                    command=lambda: corroborar_datos())
         botonGuardarDatos.grid(row=7, column=0, columnspan=3)
 
 #Este es el primer frame con el primer parametro a evaluar, el de conciencia. Lo mas relevante es la funcionalidad del imagebutton: se crea una funcion lambda que manda a llamar dos funciones, ambas estan dentro de una tupla;
