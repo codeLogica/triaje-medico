@@ -24,13 +24,20 @@ El siguiente programa digital esta enfocado en la deteccion oportuna de paciente
     - Poblacion obstetrica
     - Poblacion pediatrica
 
-5. Ingresar datos del paciente (no implementado)
+5. Ingresar datos del paciente (Implentacion parcial.)
     - Nombre
     - Apellidos
     - Fecha de Nacimiento
     - Sexo
 
-    - Datos del tutor (menores de edad)
+    - Datos del tutor (no implementado.)
+
+6. Seleccionar condicion clinica
+    - Dependiente del estado de salud.
+
+7. Ingresar signos vitales
+
+8. Imprimir hoja con datos evaluados y codigo de color.
     
 
 ## Mision
