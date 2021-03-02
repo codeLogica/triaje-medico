@@ -1,11 +1,11 @@
-from datetime import datetime
+from datetime import date, datetime
 
 #Funcion para corroborar que se ingresen caracteres alfabeticos en el nombre y que sean en mayusculas. 
-def ValidarMayuscula(*letraMayuscula):
+def ValidarMayuscula(*letras):
     validacion= []
-    if len(letraMayuscula) == None:
+    if len(letras) == None:
         return False
-    for char in letraMayuscula:
+    for char in letras:
         if char.isupper():
             validacion.append(char)
         else:
@@ -27,7 +27,34 @@ def ValidarEdad(*f_nacimiento):
         if len(char) > 10:
             return False
         elif char.isdecimal(): #Corroborar que sea caracter numerico
-            validacion.append(char)
+            validacion.append(char) 
+            
+            listaDias= ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"]
+            listaMeses= ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"]
+            listaAños= list(range(1901, 3001))
+            
+            #Corroborar que la fecha sea valida. 
+            if len(validacion[0])==2:
+                if (validacion[0][:2]) not in listaDias:
+                    return False
+            elif len(validacion[0])==4:
+                if (validacion[0][2:4]) not in listaMeses:
+                    return False
+            elif len(validacion[0])==8:
+                if int(validacion[0][4:]) not in listaAños:
+                    return False
+                elif len(validacion[0])==8:
+                    hoy= datetime.now()
+
+                    while True:
+                        try:
+                            fechIngresada= datetime.strptime(validacion[0], "%d%m%Y")
+                            if fechIngresada > hoy:
+                                return False
+                            break
+                        except ValueError:
+                            print("Fecha inválida")
+                            return False
         else:
             return False
 
