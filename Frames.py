@@ -1,10 +1,11 @@
 import tkinter as tk
-from tkinter import StringVar, Variable, ttk
+from tkinter import ttk
+from tkinter import StringVar
 from tkinter import PhotoImage
 from Mod_Eva import Modulo
 from Mod_Eva import Resultado
-from Mod_Eva import Parametros
 from Func_Extra import FuncionesExtra
+
 
 #Esta es la pagina principal del programa, donde se muestra informacion relevante. Se inicializa el frame y dentro encontramos los widgets necesarios. Se basa en una serie de imagenes con los parametros a analizar y dependiendo de la seleccion se evaluan en otro modulo. 
 #Se sigue el siguiente esquema en todos los frames:
@@ -544,9 +545,6 @@ class PaginaConsolabilidad(tk.Frame):
                                          command= lambda: (es.Inconsolable(), [master.switch_frame(PaginaRuidos)]))
         botonInconsolabilidad.grid(row=1, column=1)
 
-#Se hace una instancia de clase del modulo parametros para pasarle los valores a analizar, solo en la seccion Respiratoria que incluyen la siguientes 3 clases.
-paramEvaluar = Parametros.Evaluar()
-
 #Los frames correspondientes al apartado respiratorio tienen la cualidad de no reedigir directamente la sigueinte pagina. Si se selecciona positivamente aparecera un combobox para especificar la clase de patologica encontrada y de ahi se hara la reedirecion a la siguiente pagina. 
 class PaginaRuidos(tk.Frame):
     def __init__(self, master):
@@ -568,7 +566,7 @@ class PaginaRuidos(tk.Frame):
         rPres= Modulo.ruidoElegido
         rAuse= Modulo.ruidosAusentes
         
-        def RuidosPresentes():             
+        def RuidosPresentes():
             cRuidos= StringVar()
             comboRuidos= ttk.Combobox(self, 
                                       textvariable=cRuidos)
@@ -581,12 +579,8 @@ class PaginaRuidos(tk.Frame):
             comboRuidos.bind("<<ComboboxSelected>>", lambda _: rPres(cRuidos.get()))
             comboRuidos.grid(row=3, column=0, columnspan=3)
 
-            while cRuidos not in comboRuidos['values']:
-                print("Elegir combobox")
-                break
-            else:
-                master.switch_frame(PaginaDificultad)
-
+            return False
+        
         def RuidosAusentes():
             rAuse()
             
@@ -602,6 +596,9 @@ class PaginaRuidos(tk.Frame):
                                        command= lambda: RuidosAusentes())
         botonRuidosAusentes.grid(row=2, column=1)
         
+        if RuidosPresentes== False:
+            master.switch_frame(PaginaDificultad)
+            
 class PaginaDificultad(tk.Frame):
     def __init__(self, master):
         tk.Frame.__init__(self, master)
@@ -615,7 +612,6 @@ class PaginaDificultad(tk.Frame):
         dAuse= Modulo.dificultadAusente
         
         def DificultadPresente():
-            #master.switch_frame(PaginaPosicion)
             cDificultad= StringVar()
             comboDificultad= ttk.Combobox(self,
                                           textvariable=cDificultad)
@@ -626,7 +622,9 @@ class PaginaDificultad(tk.Frame):
             comboDificultad.state(["readonly"])
             comboDificultad.bind("<<ComboboxSelected>>", lambda _: dPres(cDificultad.get()))
             comboDificultad.grid(row=2, column=0, columnspan=3)
-        
+
+            #master.switch_frame(PaginaPosicion)
+
         def DificultadAusente():
             dAuse()
 
@@ -659,44 +657,36 @@ class PaginaPosicion(tk.Frame):
         self.imagenRespiracionPosicionSi= tk.PhotoImage(file= "Imagenes\Respiracion\posicionSi.png")
         self.imagenRespiracionPosicionNo= tk.PhotoImage(file= "Imagenes\Respiracion\posicionNo.png")
         
-        #posicionPatologica = Modulo.PosicionPatologicaOpcion()
-        
-        def PosicionSi(self):
-            def posicionElegida(*args):
-                comboPosicionElegida= comboPosicion.get()
+        pPres= Modulo.posicionElegida
+        pAuse= Modulo.posicionAusente
                 
-                if comboPosicionElegida== "Tripode":
-                    paramEvaluar.TEPR(False)
-                elif comboPosicionElegida=="Olfateo":
-                    paramEvaluar.TEPR(False)
-                elif comboPosicionElegida=="Cabeceo":
-                    paramEvaluar.TEPR(False)
-                    
-                master.switch_frame(PaginaAntecedentes)
-
-            comboPosicion= ttk.Combobox(self)
+        def PosicionSi():
+            cPosicion= StringVar()
+            comboPosicion= ttk.Combobox(self,
+                                        textvariable=cPosicion)
             comboPosicion['values']= ("Tripode",
                                       "Olfateo",
                                       "Caebeceo")
             comboPosicion.state(["readonly"])
             comboPosicion.bind("<<ComboboxSelected>>", 
-                               posicionElegida)
+                               lambda _: pPres(cPosicion.get()))
             comboPosicion.grid(row=2, column=0, columnspan=3)
-        
-        def PosicionNo(self):
-            paramEvaluar.TEPR(True)
-            paramEvaluar.SAT(0)
-            paramEvaluar.SAC(0.0)
             
-            master.switch_frame(PaginaAntecedentes)
+            #master.switch_frame(PaginaAntecedentes)
+
+        def PosicionNo():
+            pAuse()
+            
+            if pAuse:
+                master.switch_frame(PaginaAntecedentes)
 
         botonPosicionSi= tk.Button(self, 
                                    image= self.imagenRespiracionPosicionSi, 
-                                   command= lambda: PosicionSi(self))
+                                   command= lambda: PosicionSi())
         botonPosicionSi.grid(row=1, column=0)
         botonPosicionNo= tk.Button(self, 
                                    image= self.imagenRespiracionPosicionNo, 
-                                   command= lambda: PosicionNo(self))
+                                   command= lambda: PosicionNo())
         botonPosicionNo.grid(row=1, column=1)
                
 #A partir de estos frames los combobox ya no aparecen. Se mantiene la misma estructura anterior. 
