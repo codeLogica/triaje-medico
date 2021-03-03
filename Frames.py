@@ -153,7 +153,7 @@ class PaginaConciencia(tk.Frame):
                                         font=("Arial", 20))
         subtituloFrameConciencia.grid(row=1, column=0, columnspan=3)
         
-        tk.Label(self, text= f"{vNombre}").grid()
+        #tk.Label(self, text= vNombre.nNombre).grid()
         
         self.imagenDespierto= tk.PhotoImage(file= "Imagenes/Conciencia/concienciaDespierto.png")
         self.imagenSomnoliento= tk.PhotoImage(file= "Imagenes/Conciencia/concienciaSomnoliento.png")
@@ -565,59 +565,41 @@ class PaginaRuidos(tk.Frame):
         self.imagenRespiracionRuidosSi= tk.PhotoImage(file= "Imagenes\Respiracion\cruidosSi.png")
         self.imagenRespiracionRuidosNo= tk.PhotoImage(file= "Imagenes\Respiracion\cruidosNo.png")
         
-        #ruidos = Modulo.RuidoRespiratorioOpcion()
+        rPres= Modulo.ruidoElegido
+        rAuse= Modulo.ruidosAusentes
         
-        def RuidosPresentes(self):
-            def ruidoElegido(*args):
-                comboRuidoElegido= comboRuidos.get()
-                
-                if comboRuidoElegido== "Gruñido":
-                    paramEvaluar.TEPR(False)
-                    paramEvaluar.SAT(3)
-                    paramEvaluar.SAC(0.333)
-                elif comboRuidoElegido== "Estridor":
-                    paramEvaluar.TEPR(False)
-                    paramEvaluar.SAT(3)
-                    paramEvaluar.SAC(0.333)
-                elif comboRuidoElegido== "Disfonia":
-                    paramEvaluar.TEPR(False)
-                    paramEvaluar.SAT(3)
-                    paramEvaluar.SAC(0.333)
-                elif comboRuidoElegido== "Quejido":
-                    paramEvaluar.TEPR(False)
-                    paramEvaluar.SAT(3)
-                    paramEvaluar.SAC(0.333)
-                elif comboRuidoElegido== "Silibancia":
-                    paramEvaluar.TEPR(False)
-                    paramEvaluar.SAT(3)
-                    paramEvaluar.SAC(0.333)
-                
-                master.switch_frame(PaginaDificultad)
-            
-            comboRuidos= ttk.Combobox(self)
+        def RuidosPresentes():             
+            cRuidos= StringVar()
+            comboRuidos= ttk.Combobox(self, 
+                                      textvariable=cRuidos)
             comboRuidos['values']=("Gruñido", 
                                    "Estridor", 
                                    "Disfonia", 
                                    "Quejido", 
                                    "Silibancia") 
             comboRuidos.state(["readonly"])
-            comboRuidos.bind("<<ComboboxSelected>>", ruidoElegido)
+            comboRuidos.bind("<<ComboboxSelected>>", lambda _: rPres(cRuidos.get()))
             comboRuidos.grid(row=3, column=0, columnspan=3)
-                    
-        def RuidosAusentes(self):
-            paramEvaluar.TEPR(True)
-            paramEvaluar.SAT(0)
-            paramEvaluar.SAC(0.0)
+
+            while cRuidos not in comboRuidos['values']:
+                print("Elegir combobox")
+                break
+            else:
+                master.switch_frame(PaginaDificultad)
+
+        def RuidosAusentes():
+            rAuse()
             
-            master.switch_frame(PaginaDificultad)
+            if rAuse:
+                master.switch_frame(PaginaDificultad)
 
         botonRuidosPresentes= tk.Button(self, 
                                         image= self.imagenRespiracionRuidosSi, 
-                                        command= lambda: RuidosPresentes(self))
+                                        command= lambda: RuidosPresentes())
         botonRuidosPresentes.grid(row=2, column=0)
         botonRuidosAusentes= tk.Button(self, 
                                        image= self.imagenRespiracionRuidosNo, 
-                                       command= lambda: RuidosAusentes(self))
+                                       command= lambda: RuidosAusentes())
         botonRuidosAusentes.grid(row=2, column=1)
         
 class PaginaDificultad(tk.Frame):
@@ -629,44 +611,27 @@ class PaginaDificultad(tk.Frame):
         tituloFrameDificultad.config(fg="blue", bg="light blue", font=("Arial", 20))
         tituloFrameDificultad.grid(row=0, column=0, columnspan=3)
         
-        def DificultadPresente(self):
-            def dificultadElegida(*args):
-                comboDificultadElegida= comboDificultad.get()
-
-                if comboDificultadElegida== "Tiraje Intercostal":
-                    paramEvaluar.TEPR(False)
-                    paramEvaluar.SAT(1)
-                    paramEvaluar.SAC(0.333)
-                elif comboDificultadElegida=="Retracciones":
-                    paramEvaluar.TEPR(False)
-                    paramEvaluar.SAT(2)
-                    paramEvaluar.SAC(0.666)
-                elif comboDificultadElegida=="Aleteo Nasal":
-                    paramEvaluar.TEPR(False)
-                    paramEvaluar.SAT(2)
-                    paramEvaluar.SAC(0.666)
-                elif comboDificultadElegida=="Dis.Toraco Abdominal":
-                    paramEvaluar.TEPR(False)
-                    paramEvaluar.SAT(3)
-                    paramEvaluar.SAC(0.666)
-            
-                master.switch_frame(PaginaPosicion)
-
-            comboDificultad= ttk.Combobox(self)
+        dPres= Modulo.dificultadElegida
+        dAuse= Modulo.dificultadAusente
+        
+        def DificultadPresente():
+            #master.switch_frame(PaginaPosicion)
+            cDificultad= StringVar()
+            comboDificultad= ttk.Combobox(self,
+                                          textvariable=cDificultad)
             comboDificultad['values']= ("Tiraje Intercostal", 
                                         "Retracciones",
                                         "Aleteo Nasal",
                                         "Dis.Toraco Abdominal")
             comboDificultad.state(["readonly"])
-            comboDificultad.bind("<<ComboboxSelected>>", dificultadElegida)
+            comboDificultad.bind("<<ComboboxSelected>>", lambda _: dPres(cDificultad.get()))
             comboDificultad.grid(row=2, column=0, columnspan=3)
         
-        def DificultadAusente(self):
-            paramEvaluar.TEPR(True)
-            paramEvaluar.SAT(0)
-            paramEvaluar.SAC(0.0) 
-        
-            master.switch_frame(PaginaPosicion)
+        def DificultadAusente():
+            dAuse()
+
+            if dAuse:
+                master.switch_frame(PaginaPosicion)
 
         self.imagenRespiracionDificultadSi= tk.PhotoImage(file= "Imagenes\Respiracion\dificultadSi.png")
         self.imagenRespiracionDificultadNo= tk.PhotoImage(file= "Imagenes\Respiracion\dificultadNo.png")
@@ -675,11 +640,11 @@ class PaginaDificultad(tk.Frame):
 
         botonDificultadPresente= tk.Button(self, 
                                            image= self.imagenRespiracionDificultadSi, 
-                                           command= lambda: DificultadPresente(self))
+                                           command= lambda: DificultadPresente())
         botonDificultadPresente.grid(row=1, column=0)
         botonDificultadAusente= tk.Button(self, 
                                           image= self.imagenRespiracionDificultadNo, 
-                                          command= lambda: DificultadAusente(self))
+                                          command= lambda: DificultadAusente())
         botonDificultadAusente.grid(row=1, column=1)
         
 class PaginaPosicion(tk.Frame):
