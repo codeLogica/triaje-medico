@@ -144,80 +144,65 @@ class ConsolableOpcion():
         paramEvaluar.SAT(2)
         paramEvaluar.SAC(0.666)
 
-"""
-def ruidosPresentes(self):
-    def ruidoElegido(*args):
-        comboRuidoElegido= comboRuidos.get()
-        if comboRuidoElegido== "Gruñido":
-            paramEvaluar.TEPR(False)
-            paramEvaluar.SAT(3)
-            paramEvaluar.SAC(0.333)
-            return True
-        elif comboRuidoElegido== "Estridor":
-            paramEvaluar.TEPR(False)
-            paramEvaluar.SAT(3)
-            paramEvaluar.SAC(0.333)
-            return True
-        elif comboRuidoElegido== "Disfonia":
-            paramEvaluar.TEPR(False)
-            paramEvaluar.SAT(3)
-            paramEvaluar.SAC(0.333)
-            return True
-        elif comboRuidoElegido== "Quejido":
-            paramEvaluar.TEPR(False)
-            paramEvaluar.SAT(3)
-            paramEvaluar.SAC(0.333)
-            return True
-        elif comboRuidoElegido== "Silibancia":
-            paramEvaluar.TEPR(False)
-            paramEvaluar.SAT(3)
-            paramEvaluar.SAC(0.333)
-            return True
-
-    comboRuidos= ttk.Combobox(self)
-    comboRuidos['values'] =("Gruñido", "Estridor", "Disfonia", "Quejido", "Silibancia") 
-    comboRuidos.state(["readonly"])
-    comboRuidos.bind("<<ComboboxSelected>>", ruidoElegido)
-    comboRuidos.pack()
+def ruidoElegido(comboRuidoElegido):
+    print("Prueba")
+    if comboRuidoElegido== "Gruñido":
+        print("Jalo 1")
+        paramEvaluar.TEPR(False)
+        paramEvaluar.SAT(3)
+        paramEvaluar.SAC(0.333)
+        return False
+    elif comboRuidoElegido== "Estridor":
+        paramEvaluar.TEPR(False)
+        paramEvaluar.SAT(3)
+        paramEvaluar.SAC(0.333)
+        return False
+    elif comboRuidoElegido== "Disfonia":
+        paramEvaluar.TEPR(False)
+        paramEvaluar.SAT(3)
+        paramEvaluar.SAC(0.333)
+        return False
+    elif comboRuidoElegido== "Quejido":
+        paramEvaluar.TEPR(False)
+        paramEvaluar.SAT(3)
+        paramEvaluar.SAC(0.333)
+        return False
+    elif comboRuidoElegido== "Silibancia":
+        paramEvaluar.TEPR(False)
+        paramEvaluar.SAT(3)
+        paramEvaluar.SAC(0.333)
+        return False
                     
-def Ausentes(self):
+def ruidosAusentes():
+    print("Algo")
     paramEvaluar.TEPR(True)
     paramEvaluar.SAT(0)
     paramEvaluar.SAC(0.0)   
 
-class DificultadRespiratoriaOpcion():
-    def Presente(self):
-        def dificultadElegida(*args):
-            comboDificultadElegida= comboDificultad.get()
+def dificultadElegida(comboDificultadElegida):
+    if comboDificultadElegida== "Tiraje Intercostal":
+        paramEvaluar.TEPR(False)
+        paramEvaluar.SAT(1)
+        paramEvaluar.SAC(0.333)
+    elif comboDificultadElegida=="Retracciones":
+        paramEvaluar.TEPR(False)
+        paramEvaluar.SAT(2)
+        paramEvaluar.SAC(0.666)
+    elif comboDificultadElegida=="Aleteo Nasal":
+        paramEvaluar.TEPR(False)
+        paramEvaluar.SAT(2)
+        paramEvaluar.SAC(0.666)
+    elif comboDificultadElegida=="Dis.Toraco Abdominal":
+        paramEvaluar.TEPR(False)
+        paramEvaluar.SAT(3)
+        paramEvaluar.SAC(0.666)
 
-            if comboDificultadElegida== "Tiraje Intercostal":
-                paramEvaluar.TEPR(False)
-                paramEvaluar.SAT(1)
-                paramEvaluar.SAC(0.333)
-            elif comboDificultadElegida=="Retracciones":
-                paramEvaluar.TEPR(False)
-                paramEvaluar.SAT(2)
-                paramEvaluar.SAC(0.666)
-            elif comboDificultadElegida=="Aleteo Nasal":
-                paramEvaluar.TEPR(False)
-                paramEvaluar.SAT(2)
-                paramEvaluar.SAC(0.666)
-            elif comboDificultadElegida=="Dis.Toraco Abdominal":
-                paramEvaluar.TEPR(False)
-                paramEvaluar.SAT(3)
-                paramEvaluar.SAC(0.666)
-
-        comboDificultad= ttk.Combobox(self)
-        comboDificultad['values']= ("Tiraje Intercostal", "Retracciones","Aleteo Nasal","Dis.Toraco Abdominal")
-        comboDificultad.state(["readonly"])
-        comboDificultad.bind("<<ComboboxSelected>>", dificultadElegida)
-        comboDificultad.pack()
-        
-    def Ausente(self):
-        paramEvaluar.TEPR(True)
-        paramEvaluar.SAT(0)
-        paramEvaluar.SAC(0.0) 
-
+def dificultadAusente():
+    paramEvaluar.TEPR(True)
+    paramEvaluar.SAT(0)
+    paramEvaluar.SAC(0.0) 
+    
+"""
 class PosicionPatologicaOpcion():
     def Si(self):
         def posicionElegida(*args):
