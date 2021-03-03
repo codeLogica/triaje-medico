@@ -1,5 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
+import app
+
 #Se importa el modulo a los que se asignara los valores, pasandolos como argumentos.
 from Mod_Eva import Parametros
 
@@ -151,7 +153,7 @@ def ruidoElegido(comboRuidoElegido):
         paramEvaluar.TEPR(False)
         paramEvaluar.SAT(3)
         paramEvaluar.SAC(0.333)
-        return False
+        return "Ok"
     elif comboRuidoElegido== "Estridor":
         paramEvaluar.TEPR(False)
         paramEvaluar.SAT(3)
@@ -172,7 +174,7 @@ def ruidoElegido(comboRuidoElegido):
         paramEvaluar.SAT(3)
         paramEvaluar.SAC(0.333)
         return False
-                    
+     
 def ruidosAusentes():
     print("Algo")
     paramEvaluar.TEPR(True)
@@ -202,30 +204,19 @@ def dificultadAusente():
     paramEvaluar.SAT(0)
     paramEvaluar.SAC(0.0) 
     
-"""
-class PosicionPatologicaOpcion():
-    def Si(self):
-        def posicionElegida(*args):
-            comboPosicionElegida= comboPosicion.get()
-            
-            if comboPosicionElegida== "Tripode":
-                paramEvaluar.TEPR(False)
-            elif comboPosicionElegida=="Olfateo":
-                paramEvaluar.TEPR(False)
-            elif comboPosicionElegida=="Cabeceo":
-                paramEvaluar.TEPR(False)
-                    
-        comboPosicion= ttk.Combobox(self)
-        comboPosicion['values']= ("Tripode","Olfateo","Caebeceo")
-        comboPosicion.state(["readonly"])
-        comboPosicion.bind("<<ComboboxSelected>>", posicionElegida)
-        comboPosicion.pack()
+def posicionElegida(*comboPosicionElegida):            
+    if comboPosicionElegida== "Tripode":
+        paramEvaluar.TEPR(False)
+    elif comboPosicionElegida=="Olfateo":
+        paramEvaluar.TEPR(False)
+    elif comboPosicionElegida=="Cabeceo":
+        paramEvaluar.TEPR(False)
         
-    def No(self):
-        paramEvaluar.TEPR(True)
-        paramEvaluar.SAT(0)
-        paramEvaluar.SAC(0.0)
-"""
+def posicionAusente(self):
+    paramEvaluar.TEPR(True)
+    paramEvaluar.SAT(0)
+    paramEvaluar.SAC(0.0)
+
 
 class AntecedentesOpcion():
     def Presentes(self):
