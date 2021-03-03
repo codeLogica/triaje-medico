@@ -1,7 +1,5 @@
 import tkinter as tk
 from tkinter import ttk
-import app
-
 #Se importa el modulo a los que se asignara los valores, pasandolos como argumentos.
 from Mod_Eva import Parametros
 
@@ -147,13 +145,11 @@ class ConsolableOpcion():
         paramEvaluar.SAC(0.666)
 
 def ruidoElegido(comboRuidoElegido):
-    print("Prueba")
     if comboRuidoElegido== "Gruñido":
-        print("Jalo 1")
         paramEvaluar.TEPR(False)
         paramEvaluar.SAT(3)
         paramEvaluar.SAC(0.333)
-        return "Ok"
+        return False
     elif comboRuidoElegido== "Estridor":
         paramEvaluar.TEPR(False)
         paramEvaluar.SAT(3)
@@ -174,7 +170,7 @@ def ruidoElegido(comboRuidoElegido):
         paramEvaluar.SAT(3)
         paramEvaluar.SAC(0.333)
         return False
-     
+         
 def ruidosAusentes():
     print("Algo")
     paramEvaluar.TEPR(True)
@@ -216,7 +212,6 @@ def posicionAusente(self):
     paramEvaluar.TEPR(True)
     paramEvaluar.SAT(0)
     paramEvaluar.SAC(0.0)
-
 
 class AntecedentesOpcion():
     def Presentes(self):
