@@ -208,7 +208,7 @@ def posicionElegida(*comboPosicionElegida):
     elif comboPosicionElegida=="Cabeceo":
         paramEvaluar.TEPR(False)
         
-def posicionAusente(self):
+def posicionAusente():
     paramEvaluar.TEPR(True)
     paramEvaluar.SAT(0)
     paramEvaluar.SAC(0.0)
