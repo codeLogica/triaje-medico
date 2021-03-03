@@ -37,7 +37,13 @@ El siguiente programa digital esta enfocado en la deteccion oportuna de paciente
 
 7. Ingresar signos vitales
 
-8. Imprimir hoja con datos evaluados y codigo de color.
+9. Ingresar somatometria
+    - Peso
+    - Talla
+    - Perímetro cefálico
+    - Circunferencia del brazo
+
+10. Imprimir hoja con datos evaluados y codigo de color.
     
 
 ## Mision
