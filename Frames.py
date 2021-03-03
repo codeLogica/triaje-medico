@@ -6,7 +6,6 @@ from Mod_Eva import Modulo
 from Mod_Eva import Resultado
 from Func_Extra import FuncionesExtra
 
-
 #Esta es la pagina principal del programa, donde se muestra informacion relevante. Se inicializa el frame y dentro encontramos los widgets necesarios. Se basa en una serie de imagenes con los parametros a analizar y dependiendo de la seleccion se evaluan en otro modulo. 
 #Se sigue el siguiente esquema en todos los frames:
 #Inizialicacion --> informacion --> imagenes --> llamada al modulo con el parametro a evaluar --> botones 
@@ -576,16 +575,12 @@ class PaginaRuidos(tk.Frame):
                                    "Quejido", 
                                    "Silibancia") 
             comboRuidos.state(["readonly"])
-            comboRuidos.bind("<<ComboboxSelected>>", lambda _: rPres(cRuidos.get()))
+            comboRuidos.bind("<<ComboboxSelected>>", lambda _: (rPres(cRuidos.get()), master.switch_frame(PaginaDificultad)))
             comboRuidos.grid(row=3, column=0, columnspan=3)
-
-            return False
         
         def RuidosAusentes():
             rAuse()
-            
-            if rAuse:
-                master.switch_frame(PaginaDificultad)
+            master.switch_frame(PaginaDificultad)
 
         botonRuidosPresentes= tk.Button(self, 
                                         image= self.imagenRespiracionRuidosSi, 
@@ -595,9 +590,6 @@ class PaginaRuidos(tk.Frame):
                                        image= self.imagenRespiracionRuidosNo, 
                                        command= lambda: RuidosAusentes())
         botonRuidosAusentes.grid(row=2, column=1)
-        
-        if RuidosPresentes== False:
-            master.switch_frame(PaginaDificultad)
             
 class PaginaDificultad(tk.Frame):
     def __init__(self, master):
@@ -620,16 +612,12 @@ class PaginaDificultad(tk.Frame):
                                         "Aleteo Nasal",
                                         "Dis.Toraco Abdominal")
             comboDificultad.state(["readonly"])
-            comboDificultad.bind("<<ComboboxSelected>>", lambda _: dPres(cDificultad.get()))
+            comboDificultad.bind("<<ComboboxSelected>>", lambda _: dPres(cDificultad.get(), master.switch_frame(PaginaPosicion)))
             comboDificultad.grid(row=2, column=0, columnspan=3)
-
-            #master.switch_frame(PaginaPosicion)
 
         def DificultadAusente():
             dAuse()
-
-            if dAuse:
-                master.switch_frame(PaginaPosicion)
+            master.switch_frame(PaginaPosicion)
 
         self.imagenRespiracionDificultadSi= tk.PhotoImage(file= "Imagenes\Respiracion\dificultadSi.png")
         self.imagenRespiracionDificultadNo= tk.PhotoImage(file= "Imagenes\Respiracion\dificultadNo.png")
@@ -669,16 +657,12 @@ class PaginaPosicion(tk.Frame):
                                       "Caebeceo")
             comboPosicion.state(["readonly"])
             comboPosicion.bind("<<ComboboxSelected>>", 
-                               lambda _: pPres(cPosicion.get()))
+                               lambda _: pPres(cPosicion.get(), master.switch_frame(PaginaAntecedentes)))
             comboPosicion.grid(row=2, column=0, columnspan=3)
             
-            #master.switch_frame(PaginaAntecedentes)
-
         def PosicionNo():
             pAuse()
-            
-            if pAuse:
-                master.switch_frame(PaginaAntecedentes)
+            master.switch_frame(PaginaAntecedentes)
 
         botonPosicionSi= tk.Button(self, 
                                    image= self.imagenRespiracionPosicionSi, 
