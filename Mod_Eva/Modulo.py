@@ -172,7 +172,6 @@ def ruidoElegido(comboRuidoElegido):
         return False
          
 def ruidosAusentes():
-    print("Algo")
     paramEvaluar.TEPR(True)
     paramEvaluar.SAT(0)
     paramEvaluar.SAC(0.0)   
