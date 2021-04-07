@@ -612,7 +612,7 @@ class PaginaDificultad(tk.Frame):
                                         "Aleteo Nasal",
                                         "Dis.Toraco Abdominal")
             comboDificultad.state(["readonly"])
-            comboDificultad.bind("<<ComboboxSelected>>", lambda _: dPres(cDificultad.get(), master.switch_frame(PaginaPosicion)))
+            comboDificultad.bind("<<ComboboxSelected>>", lambda _: (dPres(cDificultad.get()), master.switch_frame(PaginaPosicion)))
             comboDificultad.grid(row=2, column=0, columnspan=3)
 
         def DificultadAusente():
